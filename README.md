@@ -1,6 +1,6 @@
 # C++ 学习代码模板 — 真实工程布局
 
-从传统 C++ 到 C++23，14 个模块，78 个演示程序。真实工程的 `include/` + `src/` + `examples/` 三层结构。
+从传统 C++ 到 C++23，14 个模块，87 个演示程序。真实工程的 `include/` + `src/` + `examples/` 三层结构。
 
 ## 学习方式：三层全敲
 
@@ -59,16 +59,16 @@ cpplesson/
 │
 ├── 00_quickstart/     ( 1 课)    # 环境验证、CMake 基础
 ├── 01_fundamentals/   ( 6 课)    # 类型、const、数组、指针、函数、控制流
-├── 02_classes/        ( 8 课)    # class/struct、构造/析构、继承、虚函数、RAII
-├── 03_memory/         ( 5 课)    # 栈/堆、智能指针(unique/shared/weak)、分配器
+├── 02_classes/        ( 9 课)    # class/struct、构造/析构、继承、虚函数、RAII、union/volatile
+├── 03_memory/         ( 6 课)    # 栈/堆、智能指针(unique/shared/weak)、分配器、内存池
 ├── 04_templates/      ( 7 课)    # 函数/类模板、特化、变参、折叠表达式、concepts
-├── 05_stl/            (10 课)    # 全部容器、迭代器、算法、tuple/optional/variant
+├── 05_stl/            (11 课)    # 全部容器、迭代器、算法、tuple/optional/variant、charconv
 ├── 06_streams_and_io/ ( 4 课)    # iostream、文件流、字符串流、format/print
-├── 07_modern_syntax/  ( 6 课)    # auto、range-for、enum class、结构化绑定、CTAD
-├── 08_move_and_lambda/( 5 课)    # 移动语义、完美转发、lambda、function/bind
-├── 09_error_and_safety/( 4 课)   # 异常、noexcept、error_code、expected
-├── 10_concurrency/    ( 6 课)    # thread、mutex、condition_variable、future、atomic
-├── 11_cpp20_cpp23/    ( 8 课)    # concepts 进阶、ranges、协程、<=>、deducing this
+├── 07_modern_syntax/  ( 8 课)    # auto、range-for、enum class、结构化绑定、CTAD、字面量、属性
+├── 08_move_and_lambda/( 6 课)    # 移动语义、完美转发、lambda、function/bind、可调用对象进阶
+├── 09_error_and_safety/( 5 课)   # 异常、noexcept、error_code、expected、stacktrace
+├── 10_concurrency/    ( 7 课)    # thread、mutex、condition_variable、future、atomic、jthread、线程池
+├── 11_cpp20_cpp23/    ( 9 课)    # concepts 进阶、ranges、协程、<=>、deducing this、constexpr增强
 ├── 12_patterns/       ( 5 课)    # Pimpl、CRTP、类型擦除、单例/工厂、观察者/访问者
 ├── 13_build_and_tooling/( 3 课)  # CMake 进阶、预处理器、调试/sanitizer
 │
