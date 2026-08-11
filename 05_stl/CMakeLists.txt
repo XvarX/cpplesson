@@ -3,15 +3,16 @@
 #
 # 模块内容: C++ 标准模板库核心组件教学，涵盖顺序容器、关联容器、无序容器、
 #           容器适配器、迭代器、算法（非修改/修改/排序）、pair/tuple/optional/
-#           variant、chrono 时间库与 random 随机数库
+#           variant、chrono 时间库、random 随机数库、charconv 高性能转换、
+#           optional 单子操作 (C++23)
 #
 # Library:  stl_lib
 #   命名空间: stl_learn
-#   源码:     src/ 中的 10 个 .cpp 文件
+#   源码:     src/ 中的 11 个 .cpp 文件
 #   头文件:   include/stl/*.hpp
 #   公共依赖: lesson_utils（所有头文件均包含 "shared/lesson_utils.hpp"）
 #
-# Examples:  10 个演示程序，每个对应一个主题
+# Examples:  11 个演示程序，每个对应一个主题
 # ------------------------------------------------------------------------------
 
 # ---- Library ---------------------------------------------------------------
@@ -27,6 +28,7 @@ add_library(stl_lib STATIC
     src/algorithms_sort.cpp
     src/tuple_types.cpp
     src/chrono_random.cpp
+    src/charconv_and_optional_monadic.cpp
 )
 
 # PUBLIC: 使用者需要 include/stl/ 下的头文件来调用库函数
@@ -72,3 +74,6 @@ target_link_libraries(09_tuple_pair_optional_variant_demo PRIVATE stl_lib)
 
 add_executable(10_chrono_random_demo examples/10_chrono_random_demo.cpp)
 target_link_libraries(10_chrono_random_demo PRIVATE stl_lib)
+
+add_executable(11_charconv_and_optional_monadic_demo examples/11_charconv_and_optional_monadic_demo.cpp)
+target_link_libraries(11_charconv_and_optional_monadic_demo PRIVATE stl_lib)

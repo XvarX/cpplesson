@@ -14,6 +14,7 @@
 #   03_unique_ptr_demo         — unique_ptr 独占所有权与自定义删除器
 #   04_shared_weak_ptr_demo    — shared_ptr/weak_ptr、循环引用、enable_shared_from_this
 #   05_allocator_basics_demo   — 自定义分配器入门 (CountingAllocator)
+#   06_memory_pool_demo        — 固定大小 MemoryPool (freelist + placement new + allocator)
 # ------------------------------------------------------------------------------
 
 # ---- Library ----------------------------------------------------------------
@@ -21,6 +22,7 @@
 add_library(memory_lib STATIC
     src/stack_vs_heap.cpp
     src/unique_ptr.cpp
+    src/memory_pool.cpp
 )
 
 # PUBLIC: 下游只需链接 memory_lib 即可自动获得 include/memory 路径
@@ -55,3 +57,7 @@ target_link_libraries(04_shared_weak_ptr_demo PRIVATE memory_lib)
 # 05 — 自定义分配器 (CountingAllocator) 入门演示
 add_executable(05_allocator_basics_demo examples/05_allocator_basics_demo.cpp)
 target_link_libraries(05_allocator_basics_demo PRIVATE memory_lib)
+
+# 06 — 固定大小 MemoryPool: freelist、placement new、std::allocator 集成
+add_executable(06_memory_pool_demo examples/06_memory_pool_demo.cpp)
+target_link_libraries(06_memory_pool_demo PRIVATE memory_lib)

@@ -10,10 +10,13 @@
 #   - Ranges 库 (views、管道操作符、ranges::to)
 #   - std::span / std::source_location
 #   - <=> 三路比较 (strong/weak/partial_ordering、=default)
+#   - constexpr new/delete (C++20)、std::is_constant_evaluated (C++20)、
+#     constexpr 析构函数、std::unreachable (C++23)
 #
 # Library:  cpp20_23_lib
-#   Sources: src/bit_utils.cpp, src/deducing_this.cpp, src/span_utils.cpp
-#   Headers: include/cpp20_23/*.hpp (8 个头文件，含纯模板/纯头文件)
+#   Sources: src/bit_utils.cpp, src/deducing_this.cpp, src/span_utils.cpp,
+#            src/constexpr_enhanced.cpp
+#   Headers: include/cpp20_23/*.hpp (9 个头文件，含纯模板/纯头文件)
 #   Links:   lesson_utils (PUBLIC — 所有模块共享的基础设施)
 #
 # Examples:
@@ -25,6 +28,7 @@
 #   06_ranges_demo                   → links cpp20_23_lib
 #   07_span_and_source_location_demo → links cpp20_23_lib
 #   08_three_way_comparison_demo     → links cpp20_23_lib
+#   09_constexpr_enhanced_demo       → links cpp20_23_lib
 # ------------------------------------------------------------------------------
 
 # ==============================================================================
@@ -40,6 +44,7 @@
 
 add_library(cpp20_23_lib STATIC
     src/bit_utils.cpp
+    src/constexpr_enhanced.cpp
     src/deducing_this.cpp
     src/span_utils.cpp
 )
@@ -88,3 +93,7 @@ target_link_libraries(07_span_and_source_location_demo PRIVATE cpp20_23_lib)
 # 08: <=> 三路比较 — strong/weak/partial_ordering、=default 自动生成运算符
 add_executable(08_three_way_comparison_demo examples/three_way_comparison_demo.cpp)
 target_link_libraries(08_three_way_comparison_demo PRIVATE cpp20_23_lib)
+
+# 09: constexpr 增强 — constexpr new/delete、is_constant_evaluated、constexpr 析构、std::unreachable
+add_executable(09_constexpr_enhanced_demo examples/09_constexpr_enhanced_demo.cpp)
+target_link_libraries(09_constexpr_enhanced_demo PRIVATE cpp20_23_lib)

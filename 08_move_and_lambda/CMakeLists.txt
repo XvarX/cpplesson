@@ -7,6 +7,7 @@
 #            src/lambda_basics.cpp
 #            src/lambda_advanced.cpp
 #            src/functional.cpp
+#            src/callable_utils.cpp
 #   Headers: include/move_lambda/*.hpp
 #   Links:   lesson_utils (PUBLIC — all modules share shared/ utilities)
 #
@@ -16,6 +17,7 @@
 #   03_lambda_basics_demo      — Lambda 语法、捕获方式、mutable、IILE、[this]/[*this]
 #   04_lambda_advanced_demo    — 泛型lambda、constexpr lambda、C++20 显式this捕获
 #   05_functional_demo         — std::function、bind、mem_fn、invoke、reference_wrapper
+#   06_callable_utils_demo     — function_ref、move_only_function、invocable/predicate
 # ------------------------------------------------------------------------------
 
 # ---- Library (STATIC — headers are template-heavy, no DLL export needed) ----
@@ -25,6 +27,7 @@ add_library(move_lambda_lib STATIC
     src/lambda_basics.cpp
     src/lambda_advanced.cpp
     src/functional.cpp
+    src/callable_utils.cpp
 )
 
 # PUBLIC: any consumer of move_lambda_lib must also see these headers
@@ -56,3 +59,6 @@ target_link_libraries(04_lambda_advanced_demo PRIVATE move_lambda_lib)
 
 add_executable(05_functional_demo examples/05_functional_demo.cpp)
 target_link_libraries(05_functional_demo PRIVATE move_lambda_lib)
+
+add_executable(06_callable_utils_demo examples/06_callable_utils_demo.cpp)
+target_link_libraries(06_callable_utils_demo PRIVATE move_lambda_lib)

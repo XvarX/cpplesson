@@ -7,7 +7,8 @@
 #   - enum class (限定作用域枚举) / 底层类型 / using enum (C++20)
 #   - 统一初始化 {} / initializer_list / 指定初始化 (C++20)
 #   - range-for / init-if / init-switch / [[likely]] [[unlikely]]
-#   - 结构化绑定 (C++17)
+#   - 用户定义字面量 (operator"") / _km _deg / std::to_underlying / 标准库字面量
+#   - [[no_unique_address]] / explicit(bool) / hardware_destructive_interference_size
 #
 # Library:  modern_syntax_lib
 #   Sources: src/auto_decltype.cpp
@@ -16,6 +17,8 @@
 #            src/init_and_designated.cpp
 #            src/range_for_init_if.cpp
 #            src/structured_bindings.cpp
+#            src/user_defined_literals.cpp
+#            src/attributes_and_explicit_bool.cpp
 #   Headers: include/modern_syntax/*.hpp
 #   Links:   lesson_utils (PUBLIC — 所有模块都需要)
 #
@@ -26,6 +29,8 @@
 #   04_init_and_designated_demo    → links modern_syntax_lib
 #   05_range_for_init_if_demo      → links modern_syntax_lib
 #   06_structured_bindings_demo    → links modern_syntax_lib
+#   07_user_defined_literals_demo  → links modern_syntax_lib
+#   08_attributes_explicit_demo    → links modern_syntax_lib
 # ------------------------------------------------------------------------------
 
 # ---- Library ----
@@ -37,6 +42,8 @@ add_library(modern_syntax_lib STATIC
     src/init_and_designated.cpp
     src/range_for_init_if.cpp
     src/structured_bindings.cpp
+    src/user_defined_literals.cpp
+    src/attributes_and_explicit_bool.cpp
 )
 
 # PUBLIC: 所有链接此库的目标都可以访问 include/ 下的头文件
@@ -69,3 +76,9 @@ target_link_libraries(05_range_for_init_if_demo PRIVATE modern_syntax_lib)
 
 add_executable(06_structured_bindings_demo examples/structured_bindings_demo.cpp)
 target_link_libraries(06_structured_bindings_demo PRIVATE modern_syntax_lib)
+
+add_executable(07_user_defined_literals_demo examples/07_user_defined_literals_demo.cpp)
+target_link_libraries(07_user_defined_literals_demo PRIVATE modern_syntax_lib)
+
+add_executable(08_attributes_explicit_demo examples/08_attributes_and_explicit_bool_demo.cpp)
+target_link_libraries(08_attributes_explicit_demo PRIVATE modern_syntax_lib)

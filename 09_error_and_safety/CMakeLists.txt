@@ -6,10 +6,12 @@
 #            src/noexcept_contracts.cpp
 #            src/error_code.cpp
 #            src/expected_utils.cpp
+#            src/stacktrace.cpp
 #   Headers: include/error_safety/exceptions.hpp
 #            include/error_safety/noexcept_contracts.hpp
 #            include/error_safety/error_code.hpp
 #            include/error_safety/expected_utils.hpp
+#            include/error_safety/stacktrace.hpp
 #   Links:   lesson_utils (PUBLIC — 提供 lesson::print_header 等共享工具)
 #
 # Examples:
@@ -20,9 +22,12 @@
 #                                    自定义 error_category、std::system_error
 #   04_expected_demo              → std::expected<T,E> (C++23)、单子操作
 #                                    (and_then / or_else / transform)
+#   05_stacktrace_demo            → std::stacktrace (C++23)、调用栈捕获、
+#                                    basic_stacktrace/stacktrace_entry、
+#                                    与异常/日志集成
 #
 # Dependencies rationale:
-#   - 本模块的四个头文件仅依赖 C++ 标准库，不依赖任何前置模块的 library，
+#   - 本模块的所有头文件仅依赖 C++ 标准库，不依赖任何前置模块的 library，
 #     因此 error_safety_lib 除 lesson_utils 外无需链接其他模块。
 #   - 所有 example 文件均直接 include "shared/lesson_utils.hpp"，通过
 #     error_safety_lib → lesson_utils 的 PUBLIC 传递获得头文件可见性。
@@ -36,6 +41,7 @@ add_library(error_safety_lib STATIC
     src/noexcept_contracts.cpp
     src/error_code.cpp
     src/expected_utils.cpp
+    src/stacktrace.cpp
 )
 
 target_include_directories(error_safety_lib PUBLIC
@@ -59,3 +65,6 @@ target_link_libraries(03_error_code_demo PRIVATE error_safety_lib)
 
 add_executable(04_expected_demo examples/04_expected_demo.cpp)
 target_link_libraries(04_expected_demo PRIVATE error_safety_lib)
+
+add_executable(05_stacktrace_demo examples/05_stacktrace_demo.cpp)
+target_link_libraries(05_stacktrace_demo PRIVATE error_safety_lib)

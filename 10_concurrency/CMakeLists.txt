@@ -3,12 +3,14 @@
 #
 # Library:  concurrency_lib (STATIC)
 #   Sources: src/concurrency_module.cpp
+#            src/thread_pool.cpp
 #   Headers: include/concurrency/thread_basics.hpp
 #            include/concurrency/mutex_and_lock.hpp
 #            include/concurrency/blocking_queue.hpp
 #            include/concurrency/future_and_promise.hpp
 #            include/concurrency/atomic_utils.hpp
 #            include/concurrency/jthread_and_parallel.hpp
+#            include/concurrency/thread_pool.hpp
 #
 #   PUBLIC links:
 #     - lesson_utils     (共享工具库, 所有模块都需要)
@@ -21,6 +23,7 @@
 #   04_future_and_promise_demo    — future/promise: async, 异常传播, packaged_task
 #   05_atomic_and_memory_demo     — 原子操作与内存序: CAS, spinlock, memory_order
 #   06_jthread_and_parallel_demo  — C++20 并行原语: jthread, latch, barrier, semaphore
+#   07_thread_pool_demo          — 线程池: 任务队列, packaged_task, stop_token 优雅关闭
 # ------------------------------------------------------------------------------
 
 # ---- 线程库 (跨平台: pthread / Windows threads) ----
@@ -29,6 +32,7 @@ find_package(Threads REQUIRED)
 # ---- Library ----
 add_library(concurrency_lib STATIC
     src/concurrency_module.cpp
+    src/thread_pool.cpp
 )
 
 target_include_directories(concurrency_lib PUBLIC
@@ -59,3 +63,6 @@ target_link_libraries(05_atomic_and_memory_demo PRIVATE concurrency_lib)
 
 add_executable(06_jthread_and_parallel_demo examples/06_jthread_and_parallel_demo.cpp)
 target_link_libraries(06_jthread_and_parallel_demo PRIVATE concurrency_lib)
+
+add_executable(07_thread_pool_demo examples/07_thread_pool_demo.cpp)
+target_link_libraries(07_thread_pool_demo PRIVATE concurrency_lib)

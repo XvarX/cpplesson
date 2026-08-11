@@ -1,4 +1,4 @@
-# C++ 学习指南 — 78 课时速览
+# C++ 学习指南 — 87 课时速览
 
 ## 学习流程
 
@@ -48,10 +48,11 @@
 | 6 | 虚函数与多态 | 虚函数、纯虚函数、抽象类、override/final、虚析构、dynamic_cast |
 | 7 | RAII 与资源管理 | RAII 惯用法、资源获取即初始化、scope_guard 思想、文件 RAII 包装 |
 | 8 | 友元与嵌套类 | 友元函数/类、嵌套类、局部类、前向声明 |
+| 9 | union 与 volatile | union(活跃成员/匿名union/非平凡成员)、volatile(MMIO/信号处理/非多线程)、与variant/atomic对比 |
 
 ---
 
-## 03 — 内存管理 (5 课时)
+## 03 — 内存管理 (6 课时)
 
 | # | 课时 | 要点 |
 |---|------|------|
@@ -60,6 +61,7 @@
 | 3 | unique_ptr | std::unique_ptr、std::make_unique、所有权转移、自定义删除器 |
 | 4 | shared_ptr 与 weak_ptr | std::shared_ptr、make_shared、引用计数、weak_ptr、循环引用、enable_shared_from_this |
 | 5 | 分配器入门 | std::allocator、自定义分配器、pmr::polymorphic_allocator(C++17) |
+| 6 | 内存池 | 固定大小 MemoryPool — freelist 实现、placement new 实战、与 allocator 的关系 |
 
 ---
 
@@ -91,6 +93,7 @@
 | 8 | 排序与二分 | sort/stable_sort/partial_sort/binary_search/lower_bound/heap/partition |
 | 9 | pair/tuple/optional/variant | pair、tuple(tie/结构化绑定)、optional(C++17)、variant/visit、any |
 | 10 | chrono 与随机数 | duration/time_point/clock、<random>、engine/distribution |
+| 11 | charconv 与 optional 单子 | to_chars/from_chars 高性能转换、optional 单子操作(and_then/or_else/transform, C++23) |
 
 ---
 
@@ -115,10 +118,12 @@
 | 4 | 统一初始化与指定初始化 | {}统一初始化、initializer_list、窄化阻止、指定初始化(C++20) |
 | 5 | 结构化绑定 | 结构化绑定(C++17)—绑定数组/tuple/成员、引用绑定、与 range-for 配合 |
 | 6 | CTAD | 类模板参数推导(C++17)、推导指引、聚合 CTAD(C++20)、常见陷阱 |
+| 7 | 用户定义字面量 | operator""、_km/_deg 自定义后缀、std::to_underlying(C++23)、标准库字面量 |
+| 8 | 属性与条件 explicit | [[no_unique_address]](C++20)空成员优化、explicit(bool)(C++20)、hardware_destructive_interference_size(C++17) |
 
 ---
 
-## 08 — 移动语义与 Lambda (5 课时)
+## 08 — 移动语义与 Lambda (6 课时)
 
 | # | 课时 | 要点 |
 |---|------|------|
@@ -127,10 +132,11 @@
 | 3 | Lambda 基础 | 捕获列表(=、&、this)、mutable、返回类型推导、IILE |
 | 4 | Lambda 进阶 | 泛型 lambda(auto)、constexpr lambda、捕获初始化(C++14)、模板 lambda(C++20) |
 | 5 | functional | std::function、std::bind、std::mem_fn、std::invoke(C++17)、reference_wrapper |
+| 6 | 可调用对象进阶 | std::function_ref(C++23 非拥有)、std::move_only_function(C++23)、std::invocable/predicate concept |
 
 ---
 
-## 09 — 错误处理与安全 (4 课时)
+## 09 — 错误处理与安全 (5 课时)
 
 | # | 课时 | 要点 |
 |---|------|------|
@@ -138,10 +144,11 @@
 | 2 | noexcept 与契约 | noexcept 说明符/运算符、异常安全保证(基本/强/不抛出)、[[nodiscard]] |
 | 3 | error_code | std::error_code、error_condition、system_error、自定义 error_category |
 | 4 | expected | std::expected<T,E>(C++23)、and_then/or_else/transform、vs 异常 vs optional |
+| 5 | stacktrace | std::stacktrace(C++23)—捕获调用栈、stacktrace_entry、与异常/日志集成 |
 
 ---
 
-## 10 — 并发编程 (6 课时)
+## 10 — 并发编程 (7 课时)
 
 | # | 课时 | 要点 |
 |---|------|------|
@@ -151,10 +158,11 @@
 | 4 | future 与 promise | future/promise、async、packaged_task、shared_future、wait_for、异常传播 |
 | 5 | 原子操作与内存序 | atomic、CAS、内存序(relaxed/acquire/release/seq_cst)、atomic_ref(C++20)、fence |
 | 6 | jthread 与并行原语 | jthread(C++20)、stop_token、latch/barrier(C++20)、counting_semaphore |
+| 7 | 线程池 | 完整 ThreadPool — 任务队列、工作线程(jthread)、stop_token 优雅关闭、counting_semaphore 限流 |
 
 ---
 
-## 11 — C++20/23 新特性 (8 课时)
+## 11 — C++20/23 新特性 (9 课时)
 
 | # | 课时 | 要点 |
 |---|------|------|
@@ -166,6 +174,7 @@
 | 6 | bit_cast 与位操作 | std::bit_cast(C++20)、byteswap(C++23)、bit_ceil/floor、popcount(C++20) |
 | 7 | deducing this | deducing this(C++23)—显式对象参数、简化 CRTP、递归 lambda、值类别感知 |
 | 8 | flat_map 与 mdspan | std::flat_map/flat_set(C++23)、std::mdspan(C++23)—多维视图 |
+| 9 | constexpr 能力增强 | constexpr new/delete(C++20)、std::is_constant_evaluated、constexpr 析构、std::unreachable(C++23) |
 
 ---
 
@@ -193,12 +202,12 @@
 
 ## 进度建议
 
-- **每天 2-3 课时**，约 6-8 周完成
+- **每天 2-3 课时**，约 7-9 周完成
 - **00-01** 快速过（2-3 天）
-- **02-03** 重点投入（1 周）
-- **04-05** 模板和 STL 结合学（1.5 周）
-- **06-07** 语法糖快速扫（3 天）
-- **08** 移动语义是灵魂，仔细敲（3 天）
-- **09-10** 错误处理和并发（1 周）
-- **11** C++20/23 精华（1 周）
-- **12-13** 工程收官（3 天）
+- **02-03** 类+内存池（1.5 周）
+- **04-05** 模板和 STL（1.5 周）
+- **06-07** 语法糖+属性（1 周）
+- **08** 移动语义+可调用对象（1 周）
+- **09-10** 错误处理+线程池+并发（1.5 周）
+- **11** C++20/23 精华+constexpr增强（1 周）
+- **12-13** 模式+工程（1 周）

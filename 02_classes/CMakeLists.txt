@@ -4,7 +4,8 @@
 # Library:  classes_lib
 #   Sources: src/class_basics.cpp, src/ctor_dtor.cpp, src/copy_move.cpp,
 #            src/operator_overload.cpp, src/inheritance.cpp,
-#            src/polymorphism.cpp, src/raii.cpp, src/friend_nested.cpp
+#            src/polymorphism.cpp, src/raii.cpp, src/friend_nested.cpp,
+#            src/union_and_volatile.cpp
 #   Headers: include/classes/*.hpp
 #   Links:   lesson_utils (PUBLIC — headers／examples 依赖 shared/lesson_utils.hpp)
 #
@@ -20,12 +21,13 @@
 #   06_virtual_and_polymorphism_demo → links classes_lib
 #   07_raii_and_resource_demo        → links classes_lib
 #   08_friend_and_nested_demo        → links classes_lib
+#   09_union_and_volatile_demo       → links classes_lib
 # ------------------------------------------------------------------------------
 
 cmake_minimum_required(VERSION 3.20)
 
 # ---- Library ----
-# 静态库：将 src/ 下 8 个 .cpp 编译为 classes_lib，供所有示例程序链接
+# 静态库：将 src/ 下 9 个 .cpp 编译为 classes_lib，供所有示例程序链接
 add_library(classes_lib STATIC
     src/class_basics.cpp
     src/ctor_dtor.cpp
@@ -35,6 +37,7 @@ add_library(classes_lib STATIC
     src/polymorphism.cpp
     src/raii.cpp
     src/friend_nested.cpp
+    src/union_and_volatile.cpp
 )
 
 # PUBLIC：include 目录对直接／间接使用者均可见（示例通过 PRIVATE 链接 classes_lib 即可看到头文件）
@@ -93,3 +96,8 @@ add_executable(08_friend_and_nested_demo
     examples/08_friend_and_nested_demo.cpp
 )
 target_link_libraries(08_friend_and_nested_demo PRIVATE classes_lib)
+
+add_executable(09_union_and_volatile_demo
+    examples/09_union_and_volatile_demo.cpp
+)
+target_link_libraries(09_union_and_volatile_demo PRIVATE classes_lib)
