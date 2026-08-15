@@ -26,17 +26,24 @@ namespace lesson {
 
 // ── Windows 控制台 UTF-8 初始化 ─────────────────────────────────────────────
 // 源文件是 UTF-8 编译 (/utf-8)，字符串在内存里是 UTF-8 字节。
-// 但 Windows 终端默认用 GBK (代码页 936) 解读输出 → 乱码。
-// 这里在第一次打印前把控制台切到 UTF-8 (代码页 65001)。
-// inline + 函数内静态变量: 整个进程只执行一次，之后的所有打印都正常。
+// 但 Windows 终端默认用 GBK (代码页 936) 解读 std::cout 的输出 → 乱码。
+// (std::print 不受影响 — MSVC 的实现会自动转宽字符走 WriteConsoleW)
+//
+// 这里用 C++17 inline 变量 + lambda: 只要任何 .cpp include 了这个头文件，
+// 就会在 main() 之前自动把控制台切到 UTF-8 (代码页 65001)。
+// inline 保证整个程序只有一份实例，不会重复执行。
+#if defined(_WIN32)
+inline const bool _console_utf8_setup = [] {
+    SetConsoleOutputCP(65001);  // 输出切 UTF-8 (程序 → 终端)
+    SetConsoleCP(65001);        // 输入切 UTF-8 (终端 → 程序, cin 读中文不乱码)
+    return true;
+}();
+#endif
+
+// 显式初始化 (一般不需要调用 — include 本头文件即自动完成)
 inline void console_utf8_init() {
 #if defined(_WIN32)
-    static bool done = [] {
-        SetConsoleOutputCP(65001);  // 输出切 UTF-8
-        SetConsoleCP(65001);        // 输入也切 UTF-8 (cin 读中文不乱码)
-        return true;
-    }();
-    (void)done;  // 消除未使用警告; static 保证只初始化一次
+    (void)_console_utf8_setup;  // 触发 inline 变量初始化 (如果还没发生)
 #endif
 }
 
