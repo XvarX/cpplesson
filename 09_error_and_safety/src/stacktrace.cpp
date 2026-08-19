@@ -34,10 +34,15 @@ std::string formatEntry(const std::stacktrace_entry& entry, std::size_t index) {
     // 如果不可用则返回空字符串
     std::string desc = entry.description();
     if (desc.empty()) {
-        // 回退方案: 使用 native_handle() 的指针值作为标识
+        // 回退方案: 使用 native_handle() 的地址值作为标识
+        // 注意: native_handle() 的类型是实现定义的 —
+        //   libstdc++(MinGW) 返回整数地址 (uintptr_t)，MSVC 返回指针
         auto handle = entry.native_handle();
-        desc = std::format("<未知符号 @ {:p}>",
-                           static_cast<const void*>(handle));
+        if constexpr (std::is_integral_v<decltype(handle)>) {
+            desc = std::format("<未知符号 @ {:#x}>", handle);
+        } else {
+            desc = std::format("<未知符号 @ {:p}>", handle);
+        }
     }
 
     // source_file() 和 source_line() 在调试符号可用时提供精确位置

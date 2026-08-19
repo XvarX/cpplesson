@@ -57,7 +57,7 @@ int main() {
     lesson::print_separator("常见陷阱速查");
     std::println("1. 函数模板不支持偏特化，只能用重载或类模板间接实现");
     std::println("2. 全特化的声明必须在通用模板之后、使用之前");
-    std::println("3. 偏特化时，模板参数列表必须与通用模板的"兼容"");
+    std::println("3. 偏特化时，模板参数列表必须与通用模板的“兼容”");
     std::println("4. 变量模板是 C++14 特性，C++11 不能用");
 
     return 0;

@@ -190,9 +190,9 @@ int main() {
     // 📝 练习
     // ═══════════════════════════════════════════════════════════════════════════
     lesson::print_subtitle("练习");
-    std::println("  1. 实现一个"多生产者-单消费者"的 BlockingQueue");
+    std::println("  1. 实现一个“多生产者-单消费者”的 BlockingQueue");
     std::println("  2. 用条件变量实现一个简单的 CountDownLatch (倒计数门闩)");
-    std::println("  3. 写一段代码演示"丢失唤醒"问题 (notify 发生在 wait 之前)");
+    std::println("  3. 写一段代码演示“丢失唤醒”问题 (notify 发生在 wait 之前)");
     std::println("  4. 给 BlockingQueue 添加 try_push/try_pop 方法 (超时版本)");
     std::println("  5. 研究 pipe-or-notify: 什么场景下用管道替代条件变量更好？");
 

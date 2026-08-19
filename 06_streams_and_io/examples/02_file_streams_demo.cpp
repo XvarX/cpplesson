@@ -168,7 +168,8 @@ int main() {
         std::ifstream fin(path);
         // 查文件大小: seekg 到末尾, 然后 tellg
         fin.seekg(0, std::ios::end);
-        auto file_size = fin.tellg();
+        // tellg() 返回 fpos (无 std::formatter 特化) — 先转 streamoff 才能打印
+        std::streamoff file_size = fin.tellg();
         std::println("文件大小: {} 字节", file_size);
 
         // 直接跳到第 2 条记录 (偏移 21 字节, 因为有换行符)
@@ -197,7 +198,7 @@ int main() {
     std::println("陷阱 3: 用 while(!fin.eof()) 读文件 — 最后一条记录被读两次");
     std::println("  → 解决: while(fin >> val) 或 while(getline(fin, line))");
     std::println("陷阱 4: 没有检查文件是否成功打开 — 然后对无效流进行操作, 静默失败");
-    std::println("  → 解决: if (!fin) { /* 处理错误 */ }");
+    std::println("  → 解决: if (!fin) {{ /* 处理错误 */ }}");
 
     // ═══════════════════════════════════════════════════════════════════════════
     // 练习

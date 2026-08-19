@@ -238,9 +238,9 @@ int main() {
     // 📝 练习
     // ═══════════════════════════════════════════════════════════════════════════
     lesson::print_subtitle("练习");
-    std::println("  1. 用 async 并行下载 3 个"URL"(模拟: 不同的 sleep + 返回字符串), 汇总结果");
+    std::println("  1. 用 async 并行下载 3 个“URL”(模拟: 不同的 sleep + 返回字符串), 汇总结果");
     std::println("  2. 用 promise-future 实现一个简单的超时机制 (wait_for + 条件变量取消)");
-    std::println("  3. 实现一个"任务分发器": packaged_task 被 push 到队列, 线程池线程 pop 执行");
+    std::println("  3. 实现一个“任务分发器”: packaged_task 被 push 到队列, 线程池线程 pop 执行");
     std::println("  4. 写一个函数, 同时启动 10 个 async 任务, 按完成顺序收集结果 (用 shared_future)");
     std::println("  5. 研究 future::then (C++ 提案) — 如果标准库没有, 自己实现一个简化版");
 

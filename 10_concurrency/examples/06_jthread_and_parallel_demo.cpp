@@ -10,6 +10,7 @@
 
 #include <print>
 #include <thread>
+#include <mutex>
 #include <latch>
 #include <barrier>
 #include <semaphore>
@@ -325,7 +326,7 @@ int main() {
     // ═══════════════════════════════════════════════════════════════════════════
     lesson::print_subtitle("练习");
     std::println("  1. 用 jthread + stop_token 实现可取消的并行文件搜索 (搜索到 N 个结果后停止)");
-    std::println("  2. 用 latch 实现"所有 5 个下载任务完成后再合并结果"的模式");
+    std::println("  2. 用 latch 实现“所有 5 个下载任务完成后再合并结果”的模式");
     std::println("  3. 用 barrier 实现一个 3 线程的并行归并排序 (每轮同步前进入下一层)");
     std::println("  4. 用 counting_semaphore 实现固定大小的线程池 (工作队列 + 资源限制)");
     std::println("  5. 对比 jthread + stop_token 和手动 thread + atomic<bool> 的代码量差异");

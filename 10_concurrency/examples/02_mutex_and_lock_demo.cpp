@@ -229,7 +229,7 @@ int main() {
     std::println("  1. 写一个线程安全的计数器类，支持 add() 和 get()");
     std::println("  2. 用 shared_mutex 实现一个线程安全的缓存 (读多写少场景)");
     std::println("  3. 故意制造一个死锁，然后用 scoped_lock 修复它");
-    std::println("  4. 用 timed_mutex 实现"获取锁最多等待 500ms，否则放弃"的逻辑");
+    std::println("  4. 用 timed_mutex 实现“获取锁最多等待 500ms，否则放弃”的逻辑");
 
     return 0;
 }

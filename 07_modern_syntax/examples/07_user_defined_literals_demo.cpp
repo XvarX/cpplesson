@@ -115,7 +115,9 @@ void part2_custom_angle_udl() {
         // 直接计算 sin 需要弧度，_deg 帮你完成了转换
         auto a = 30_deg;  // 内部已转为弧度
         std::println("sin(30°) = {:.6f}", std::sin(a.radians));  // ≈ 0.5
-        std::println("cos(60°) = {:.6f}", std::cos(60_deg.radians)); // ≈ 0.5
+        std::println("cos(60°) = {:.6f}", std::cos((60_deg).radians)); // ≈ 0.5
+        // 注意: 60_deg.radians 会被预处理器当成一个记号 (后缀里混入了 .radians),
+        //       必须加括号写成 (60_deg).radians 才能访问成员
         lesson::print_note("_deg 后缀确保传入 sin/cos 的是弧度，而非角度");
     }
 }

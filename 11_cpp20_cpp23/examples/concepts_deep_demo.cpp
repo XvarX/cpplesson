@@ -59,7 +59,7 @@ int main() {
     lesson::print_separator("常见陷阱");
     std::println("  1. requires 表达式和 requires 子句的语法区别:");
     std::println("     template<typename T> requires std::integral<T>  ← requires 子句 (约束模板)");
-    std::println("     requires(T a) { a + a; }                        ← requires 表达式 (检测表达式)");
+    std::println("     requires(T a) {{ a + a; }}                        ← requires 表达式 (检测表达式)");
     std::println("  2. concept 组合时注意短路求值 — A||B 中若 A 满足则不再检查 B");
     std::println("  3. 嵌套 requires 必须写在 requires 表达式体内部");
 

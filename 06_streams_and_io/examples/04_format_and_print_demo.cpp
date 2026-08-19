@@ -201,7 +201,7 @@ int main() {
     // ═══════════════════════════════════════════════════════════════════════════
     lesson::print_subtitle("练习");
     std::println("1. 用 std::format 制作一个九九乘法表, 每列对齐");
-    std::println("2. 为 struct Color { uint8_t r,g,b; } 实现 std::formatter, 输出为 #RRGGBB 格式");
+    std::println("2. 为 struct Color {{ uint8_t r,g,b; }} 实现 std::formatter, 输出为 #RRGGBB 格式");
     std::println("3. 写一个函数, 用 std::print 输出一个带头部、分隔线、数据的表格");
     std::println("4. 对比 std::format + std::cout 与直接用 std::print 的性能 (打印 100000 行)");
 

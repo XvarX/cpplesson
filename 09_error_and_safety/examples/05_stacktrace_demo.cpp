@@ -11,6 +11,7 @@
 #include <string>
 #include <stacktrace>   // C++23: std::stacktrace, std::stacktrace_entry
 #include <stdexcept>
+#include <type_traits> // std::is_integral_v
 #include <iostream>
 #include "error_safety/stacktrace.hpp"
 #include "shared/lesson_utils.hpp"
@@ -85,7 +86,7 @@ void part2_entry_details() {
     auto trace = std::stacktrace::current();
 
     std::println("  逐帧查看 (最多打印前 5 帧):");
-    std::size_t count = std::min(trace.size(), static_cast<std::size_t>(5));
+    std::size_t count = std::min<std::size_t>(trace.size(), 5);
     for (std::size_t i = 0; i < count; ++i) {
         const auto& entry = trace[i];
         std::println("    ── 帧 #{} ──", i);
@@ -96,10 +97,14 @@ void part2_entry_details() {
                      entry.source_line() == 0 ? "(不可用)" : std::to_string(entry.source_line()));
         std::println("      有效帧   : {}", entry ? "是" : "否");
 
-        // native_handle() 的类型因平台而异 (void* / DWORD64 等)
-        // 这里用 static_cast 转为 void* 以便统一打印
-        auto handle = static_cast<const void*>(entry.native_handle());
-        std::println("      原生句柄 : {:p}", handle);
+        // native_handle() 的类型因平台而异 — libstdc++(MinGW) 返回整数地址,
+        // MSVC 返回指针; 用 if constexpr 分支处理, 统一以可打印形式输出
+        auto handle = entry.native_handle();
+        if constexpr (std::is_integral_v<decltype(handle)>) {
+            std::println("      原生句柄 : {:#x}", handle);
+        } else {
+            std::println("      原生句柄 : {:p}", handle);
+        }
     }
 
     // ── 使用封装好的 formatEntry ──

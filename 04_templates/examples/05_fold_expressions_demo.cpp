@@ -71,7 +71,7 @@ int main() {
     std::println("1. 运算符不满足结合律时, 左/右折叠结果不同! (如 - / %)");
     std::println("2. 空参数包 + 一元折叠: && → true, || → false, 逗号 → void");
     std::println("3. 空参数包 + 一元折叠: + * | & 等运算符不合法, 用二元折叠");
-    std::println("4. 字符串拼接用二元折叠: (std::string{} + ... + args)");
+    std::println("4. 字符串拼接用二元折叠: (std::string{{}} + ... + args)");
 
     return 0;
 }
