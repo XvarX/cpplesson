@@ -33,6 +33,14 @@ else()
     add_compile_options(-Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor)
 endif()
 
+# ---- GCC 16+ (MinGW): 链接 libstdc++exp 实验库 ----
+# GCC 16 起，std::print 的 Windows 终端支持 (__open_terminal 等) 位于
+# libstdc++exp.a，且默认不链接 — 缺了它所有用 std::println 的程序无法链接
+if(WIN32 AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
+        AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 16)
+    link_libraries(stdc++exp)
+endif()
+
 # ---- 所有目标输出到统一目录 (方便运行) ----
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
