@@ -100,6 +100,7 @@ int main() {
 
     std::println("  子视图示例 (3x4 矩阵的子区域):");
 
+#if defined(__cpp_lib_submdspan)
     // 取行 0-1, 列 1-2 (2x2 子矩阵)
     auto sub = std::submdspan(mat,
         std::pair<size_t, size_t>{0, 2},   // 行: [0, 2)
@@ -116,6 +117,14 @@ int main() {
     std::println("  修改子视图 sub[0,0] = 999:");
     sub[0, 0] = 999;
     std::println("    mat[0,1] = {} (原数据也被修改了!)", mat[0, 1]);
+#else
+    // std::submdspan 是 C++26 特性 (P2630) — C++23 下不可用
+    std::println("  ⚠ std::submdspan 需要 C++26 — 当前以 -std=c++23 编译, 跳过本节演示");
+    std::println("    手动等价做法: 用数据指针 + 偏移构造新的 mdspan 视图");
+    lesson::print_separator();
+    std::println("  手动子视图 (行[0,2), 列[1,3)) 示意:");
+    std::println("    sub[i][j] = mat[i, j + 1]  — 索引时加偏移即可");
+#endif
 
     // ==========================================================================
     // 常见陷阱

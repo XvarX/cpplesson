@@ -44,8 +44,8 @@ void part1_function_ref() {
 
         CopyTracker::reset_counts();
         // function_ref: 引用存储, 不拷贝
-        std::println("传入 std::function_ref:");
-        call_with_ref(std::function_ref<int(int)>{tracker}, 3);   // 不拷贝!
+        std::println("传入 function_ref:");
+        call_with_ref(function_ref<int(int)>{tracker}, 3);   // 不拷贝!
         std::println("  function_ref 拷贝次数: {} (零拷贝!)", CopyTracker::copy_count);
     }
 
@@ -61,12 +61,12 @@ void part1_function_ref() {
 
         // 3. 包装函数对象
         CopyTracker t(3);
-        call_with_ref(std::function_ref<int(int)>{t}, 7);  // 21
+        call_with_ref(function_ref<int(int)>{t}, 7);  // 21
     }
 
     // 关键限制: function_ref 不拥有对象, 被引用者必须存活
     std::println("\n关键: function_ref 不拥有对象, 被引用者必须存活于调用期间");
-    std::println("  正确用法: 函数参数中临时使用  callback(std::function_ref<int(int)>{obj})");
+    std::println("  正确用法: 函数参数中临时使用  callback(std::function_ref<int(int)>{{obj}})");
     std::println("  错误用法: 存储 function_ref 到成员变量(对象销毁后悬垂!)");
 }
 
@@ -151,7 +151,7 @@ void part3_invocable() {
             return std::invoke(std::forward<decltype(fn)>(fn), x);
         };
 
-        std::println("safe_call([](int x){ return x*10; }, 5) = {}",
+        std::println("safe_call([](int x){{ return x*10; }}, 5) = {}",
                      safe_call([](int x) { return x * 10; }, 5));
     }
 
@@ -210,9 +210,11 @@ void part4_predicate() {
         // auto bad_pred = [](int x) { return x * 2; };  // 返回 int
         // count_if_custom(data, bad_pred);  // 编译错误: 不满足 predicate<int>
 
-        static_assert(!std::predicate<decltype([](int x) { return x * 2; }), int>,
-                      "返回 int 的不是 predicate");
-        std::println("  static_assert: 返回 int 的 Lambda 不满足 predicate<int> ✓");
+        // 注意: 返回 int 的 Lambda 其实满足 predicate (int 可隐式转 bool)!
+        //       必须用不可转 bool 的类型 (如 std::string) 才会被 concept 拦截
+        static_assert(!std::predicate<decltype([](int x) { return std::to_string(x); }), int>,
+                      "返回 string 的不是 predicate");
+        std::println("  static_assert: 返回 string 的 Lambda 不满足 predicate<int> ✓");
 
         static_assert(!std::predicate<decltype([](const std::string&) { return true; }), int>,
                       "参数类型不匹配的不是 predicate");
@@ -229,10 +231,10 @@ void pitfalls() {
     lesson::print_header("常见陷阱");
 
     std::println("陷阱1: function_ref 悬垂");
-    std::println("  auto make_ref() {");
-    std::println("    auto lambda = [](int x) { return x * 2; };");
-    std::println("    return std::function_ref<int(int)>{lambda};  // ❌ lambda 已销毁!");
-    std::println("  }");
+    std::println("  auto make_ref() {{");
+    std::println("    auto lambda = [](int x) {{ return x * 2; }};");
+    std::println("    return std::function_ref<int(int)>{{lambda}};  // ❌ lambda 已销毁!");
+    std::println("  }}");
     std::println("  → function_ref 只是'视图', 不延长被引用对象的生命周期");
 
     std::println("陷阱2: move_only_function 移动后状态");

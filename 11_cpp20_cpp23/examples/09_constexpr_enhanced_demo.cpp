@@ -24,6 +24,15 @@
   #define CONSTEXPR_NEW_SUPPORTED 1
 #endif
 
+// 直接调用 ::operator new 的编译期求值需要 C++26 运行库支持
+// (__cpp_lib_constexpr_new >= 202406L — libstdc++ 只在 C++26 模式提供);
+// 而 new 表达式 (new T[n]) 自 C++20 起就可用于编译期求值
+#if CONSTEXPR_NEW_SUPPORTED && defined(__cpp_lib_constexpr_new) && (__cpp_lib_constexpr_new >= 202406L)
+  #define CONSTEXPR_OPNEW_SUPPORTED 1
+#else
+  #define CONSTEXPR_OPNEW_SUPPORTED 0
+#endif
+
 namespace cpp20_23 {
     void verify_compile_time_array_sum();
     void verify_compile_time_object_lifetime();
@@ -72,10 +81,12 @@ int main() {
     {
         int result = cpp20_23::compile_time_object_lifetime();
         std::cout << "    compile_time_object_lifetime() = " << result;
-#if CONSTEXPR_NEW_SUPPORTED
+#if CONSTEXPR_OPNEW_SUPPORTED
         constexpr int ct_result = cpp20_23::compile_time_object_lifetime();
         std::cout << "  (编译期: " << ct_result << ")";
         static_assert(ct_result == 84, "42 * 2 = 84");
+#else
+        std::cout << "  (编译期求值 ::operator new 需 C++26 运行库 — 仅演示运行时)";
 #endif
         std::cout << "\n";
         std::cout << "    同一个函数: 编译期构造 42 → 返回 84\n";
@@ -146,9 +157,11 @@ int main() {
         auto [sum, sz] = cpp20_23::compile_time_vector_use();
         std::cout << "    compile_time_vector_use() → sum=" << sum << ", size=" << sz << "\n";
 #if CONSTEXPR_NEW_SUPPORTED
-        constexpr auto [ct_sum, ct_sz] = cpp20_23::compile_time_vector_use();
-        static_assert(ct_sum == 150, "10+20+30+40+50 = 150");
-        static_assert(ct_sz == 5);
+        // 注意: 不用 constexpr 结构化绑定 — 同作用域先出现运行时绑定时,
+        // GCC 16 会拒绝后续 constexpr 绑定参与常量表达式 (P2686 边界情况)
+        constexpr auto ct = cpp20_23::compile_time_vector_use();
+        static_assert(ct.first == 150, "10+20+30+40+50 = 150");
+        static_assert(ct.second == 5);
         std::cout << "    编译期: static_assert 全部通过 ✓\n";
 #endif
     }

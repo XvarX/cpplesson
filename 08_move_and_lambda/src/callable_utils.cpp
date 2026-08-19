@@ -14,7 +14,7 @@ int square(int x) {
 // ── call_with_ref — 通过 function_ref 调用回调(非拥有, 零开销) ─────────────────
 // function_ref 本质是 { void* obj, R(*erased_fn)(void*, Args...) }
 // 相比 function 少了一次堆分配 + 类型擦除的虚函数开销
-void call_with_ref(std::function_ref<int(int)> callback, int value) {
+void call_with_ref(function_ref<int(int)> callback, int value) {
     std::println("  call_with_ref: callback({}) = {}", value, callback(value));
 }
 

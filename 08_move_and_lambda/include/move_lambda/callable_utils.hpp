@@ -10,9 +10,52 @@
 #include <functional>
 #include <concepts>
 #include <memory>
+#include <type_traits>
 #include <vector>
 
 namespace move_lambda {
+
+// ── function_ref 可用性检测 ──────────────────────────────────────────────────
+// std::function_ref (P0792) 于 C++26 进入标准。本课程按 -std=c++23 编译，
+// 故用特性宏检测: 标准库有则直接 using 引入，没有则用下面的教学版回退实现
+// (语义一致: 非拥有、零拷贝、可包装任意可调用对象)。
+#if defined(__cpp_lib_function_ref)
+using std::function_ref;
+#else
+// ── function_ref 教学版 (C++23 回退) ─────────────────────────────────────────
+// 本质: { void* 对象指针, void(*调用桩)(void*, Args...) } 两个指针的"视图"
+// 不拥有对象、不堆分配 — 与 std::function (类型擦除+可能堆分配) 的关键区别
+template <typename Sig>
+class function_ref;  // 主模板不定义 — 只支持函数签名特化
+
+template <typename R, typename... Args>
+class function_ref<R(Args...)> {
+    void* obj_ = nullptr;
+    R (*invoke_)(void*, Args...) = nullptr;
+
+    template <typename F>
+    static R invoke_stub(void* o, Args... args) {
+        // 把 void* 还原为可调用对象的引用再调用 (不拷贝!)
+        // 注意: F 可能是函数引用 — void* 与函数指针之间只能 reinterpret_cast
+        return (*reinterpret_cast<std::add_pointer_t<F>>(o))(std::forward<Args>(args)...);
+    }
+
+public:
+    template <typename F>
+        requires std::invocable<F&, Args...>
+              && std::is_convertible_v<std::invoke_result_t<F&, Args...>, R>
+              // 拒绝右值临时量 — function_ref 不延长生命周期, 绑定临时量必悬垂
+              && (!std::is_rvalue_reference_v<F&&>)
+              && (!std::same_as<std::decay_t<F>, function_ref>)
+    function_ref(F&& f) noexcept
+        : obj_(reinterpret_cast<void*>(std::addressof(f))),
+          invoke_(&invoke_stub<F>) {}
+
+    R operator()(Args... args) const {
+        return invoke_(obj_, std::forward<Args>(args)...);
+    }
+};
+#endif // __cpp_lib_function_ref
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // CopyTracker — 追踪拷贝/移动的函子, 用于对比 function_ref 与 function 开销
@@ -41,8 +84,9 @@ struct CopyTracker {
     CopyTracker& operator=(const CopyTracker&) = delete;
     CopyTracker& operator=(CopyTracker&&) = delete;
 
-    void operator()(int x) const {
+    int operator()(int x) const {
         std::println("  CopyTracker<id={}>::operator()({}) = {}", id, x, x * id);
+        return x * id;  // 返回 int — 使其满足 function<int(int)> / function_ref<int(int)>
     }
 
     static void reset_counts() { copy_count = 0; move_count = 0; }
@@ -67,11 +111,12 @@ int square(int x);
 // ═══════════════════════════════════════════════════════════════════════════════
 // call_with_ref — 使用 function_ref 作为参数(非拥有, 零开销)
 // ═══════════════════════════════════════════════════════════════════════════════
-// WHAT:  接受 std::function_ref<int(int)>, 轻量级回调参数
+// WHAT:  接受 function_ref<int(int)>, 轻量级回调参数
+//        (C++26 用标准库 std::function_ref; C++23 用本文件的教学版回退)
 //        不接管所有权, 不产生堆分配, 不要求可调用对象可拷贝
 // WHY:   热路径回调的首选 — function_ref ≈ 裸函数指针, 但能包装任何可调用对象
 // WHEN:   函数参数是回调且你不需要存储它(调用后即丢弃)
-void call_with_ref(std::function_ref<int(int)> callback, int value);
+void call_with_ref(function_ref<int(int)> callback, int value);
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // call_with_function — 对比: 使用 std::function 作为参数(拥有所有权)
