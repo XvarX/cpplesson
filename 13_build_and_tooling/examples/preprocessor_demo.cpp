@@ -14,6 +14,7 @@
 #include <vector>
 #include <array>
 #include <cassert>
+#include <optional>  // HAS_OPTIONAL 检测后的演示需要
 #include <string_view>
 
 #include "shared/lesson_utils.hpp"

@@ -14,6 +14,7 @@
 #include <print>
 #include <string>
 #include <type_traits> // std::is_enum_v, std::underlying_type_t
+#include <utility>     // std::to_underlying (C++23)
 #include <cstdint>     // uint8_t
 
 // ╔══════════════════════════════════════════════════════════════════════════════╗

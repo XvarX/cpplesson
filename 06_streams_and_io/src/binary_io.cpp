@@ -3,6 +3,7 @@
 // ╚══════════════════════════════════════════════════════════════════════════════╝
 
 #include "streams/binary_io.hpp"
+#include <iostream>  // std::cerr
 
 namespace streams {
 
