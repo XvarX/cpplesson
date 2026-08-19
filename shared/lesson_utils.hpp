@@ -18,7 +18,15 @@
 // SetConsoleOutputCP — 输出代码页 (程序 → 终端)
 // SetConsoleCP      — 输入代码页 (终端 → 程序)
 #define WIN32_LEAN_AND_MEAN
+// NOGDI: 排除 wingdi.h — 其全局函数 Rectangle()/Ellipse() 等会按同名遮蔽规则
+// 隐藏教学代码里同名的类 (如 02_classes 的 class Rectangle)，导致诡异的编译错误
+#ifndef NOGDI
+#define NOGDI
+#endif
+// libstdc++ 在 C++ 模式下已预定义 NOMINMAX=1，避免重定义警告
+#ifndef NOMINMAX
 #define NOMINMAX
+#endif
 #include <windows.h>
 #endif
 
