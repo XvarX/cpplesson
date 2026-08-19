@@ -55,9 +55,9 @@ void part5_distributions();
 void part6_ratio();
 
 // ── 常见陷阱 ─────────────────────────────────────────────────────────────────
-void part_pitfalls();
+void chrono_random_pitfalls();
 
 // ── 练习 ────────────────────────────────────────────────────────────────────
-void part_exercises();
+void chrono_random_exercises();
 
 } // namespace stl_learn

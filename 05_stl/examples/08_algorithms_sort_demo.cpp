@@ -15,6 +15,6 @@ int main() {
     stl_learn::part4_merge();
     stl_learn::part5_heap();
     stl_learn::part6_partition();
-    stl_learn::part_pitfalls();
-    stl_learn::part_exercises();
+    stl_learn::algorithms_sort_pitfalls();
+    stl_learn::algorithms_sort_exercises();
 }

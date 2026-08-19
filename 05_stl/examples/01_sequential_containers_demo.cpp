@@ -15,6 +15,6 @@ int main() {
     stl_learn::part4_forward_list();
     stl_learn::part5_array();
     stl_learn::part6_choose_container();
-    stl_learn::part_pitfalls();
-    stl_learn::part_exercises();
+    stl_learn::sequential_containers_pitfalls();
+    stl_learn::sequential_containers_exercises();
 }

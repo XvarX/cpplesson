@@ -52,9 +52,9 @@ void part5_predicates();
 void part6_adjacent();
 
 // ── 常见陷阱 ─────────────────────────────────────────────────────────────────
-void part_pitfalls();
+void algorithms_nonmod_pitfalls();
 
 // ── 练习 ────────────────────────────────────────────────────────────────────
-void part_exercises();
+void algorithms_nonmod_exercises();
 
 } // namespace stl_learn

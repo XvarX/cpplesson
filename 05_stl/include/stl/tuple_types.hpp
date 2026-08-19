@@ -48,9 +48,9 @@ void part4_variant();
 void part5_any();
 
 // ── 常见陷阱 ─────────────────────────────────────────────────────────────────
-void part_pitfalls();
+void tuple_types_pitfalls();
 
 // ── 练习 ────────────────────────────────────────────────────────────────────
-void part_exercises();
+void tuple_types_exercises();
 
 } // namespace stl_learn

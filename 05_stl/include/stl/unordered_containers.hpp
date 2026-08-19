@@ -61,9 +61,9 @@ void part4_custom_hash();
 void part5_comparison();
 
 // ── 常见陷阱 ─────────────────────────────────────────────────────────────────
-void part_pitfalls();
+void unordered_containers_pitfalls();
 
 // ── 练习 ────────────────────────────────────────────────────────────────────
-void part_exercises();
+void unordered_containers_exercises();
 
 } // namespace stl_learn

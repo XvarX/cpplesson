@@ -14,6 +14,6 @@ int main() {
     stl_learn::part3_remove();
     stl_learn::part4_replace();
     stl_learn::part5_more_mod();
-    stl_learn::part_pitfalls();
-    stl_learn::part_exercises();
+    stl_learn::algorithms_mod_pitfalls();
+    stl_learn::algorithms_mod_exercises();
 }

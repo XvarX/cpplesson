@@ -39,6 +39,9 @@ public:
         using pointer = const int*;
         using reference = const int&;
 
+        // 迭代器必须可默认构造 — std::ranges::end 要求哨兵满足 sentinel_for
+        // (含 semiregular → default_initializable)，否则 Range 不满足 range 概念
+        Iterator() = default;
         explicit Iterator(int v) : current(v) {}
         int operator*() const { return current; }
         Iterator& operator++() {
@@ -89,9 +92,9 @@ void part4_custom_iterator();
 void part5_ranges();
 
 // ── 常见陷阱 ─────────────────────────────────────────────────────────────────
-void part_pitfalls();
+void iterators_pitfalls();
 
 // ── 练习 ────────────────────────────────────────────────────────────────────
-void part_exercises();
+void iterators_exercises();
 
 } // namespace stl_learn

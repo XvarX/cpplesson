@@ -3,6 +3,7 @@
 // ╚══════════════════════════════════════════════════════════════════════════════╝
 
 #include "stl/sequential_containers.hpp"
+#include <algorithm>
 #include <ranges>
 
 using namespace std;
@@ -166,7 +167,7 @@ void part6_choose_container() {
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  常见陷阱                                                                   ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-void part_pitfalls() {
+void sequential_containers_pitfalls() {
     lesson::print_subtitle("常见陷阱");
 
     // 陷阱1: 循环中修改 vector 导致迭代器失效
@@ -192,7 +193,7 @@ void part_pitfalls() {
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  练习                                                                       ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-void part_exercises() {
+void sequential_containers_exercises() {
     lesson::print_subtitle("练习");
 
     println("1. 用 vector<int> 实现一个简单的栈（push_back/pop_back/back）");

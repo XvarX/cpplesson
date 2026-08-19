@@ -14,6 +14,6 @@ int main() {
     stl_learn::part3_optional();
     stl_learn::part4_variant();
     stl_learn::part5_any();
-    stl_learn::part_pitfalls();
-    stl_learn::part_exercises();
+    stl_learn::tuple_types_pitfalls();
+    stl_learn::tuple_types_exercises();
 }

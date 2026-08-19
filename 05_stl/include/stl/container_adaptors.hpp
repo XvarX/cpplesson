@@ -53,9 +53,9 @@ void part4_custom_pq();
 void part5_summary();
 
 // ── 常见陷阱 ─────────────────────────────────────────────────────────────────
-void part_pitfalls();
+void container_adaptors_pitfalls();
 
 // ── 练习 ────────────────────────────────────────────────────────────────────
-void part_exercises();
+void container_adaptors_exercises();
 
 } // namespace stl_learn

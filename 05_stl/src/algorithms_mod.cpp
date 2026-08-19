@@ -85,12 +85,13 @@ void part3_remove() {
     println("原始: size={}", v.size());  // 预期: 7
 
     // 仅 remove — 不改变 size!
-    auto new_end = ranges::remove(v, 2);
+    // 注意: ranges::remove 返回的是"被移除元素的尾段"子区间 [新逻辑末尾, end)
+    auto removed = ranges::remove(v, 2);
     println("remove(2) 后 size 仍为: {} (只是重排了元素!)", v.size());  // 7
 
     // remove 之后、erase 之前的状态
-    print("remove 后 [begin, new_end): ");
-    for (auto it = v.begin(); it != new_end; ++it) print("{} ", *it);
+    print("remove 后 [begin, 新逻辑末尾): ");
+    for (auto it = v.begin(); it != removed.begin(); ++it) print("{} ", *it);
     println("");
     // 预期: 1 3 4 5
 
@@ -194,7 +195,7 @@ void part5_more_mod() {
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  常见陷阱                                                                   ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-void part_pitfalls() {
+void algorithms_mod_pitfalls() {
     lesson::print_subtitle("常见陷阱");
 
     // 陷阱1: remove 不真正删除元素，必须配合 erase
@@ -219,7 +220,7 @@ void part_pitfalls() {
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  练习                                                                       ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-void part_exercises() {
+void algorithms_mod_exercises() {
     lesson::print_subtitle("练习");
 
     println("1. 用 copy_if 从一个数字列表中提取所有质数到新列表");

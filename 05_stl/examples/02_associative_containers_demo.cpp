@@ -14,6 +14,6 @@ int main() {
     stl_learn::part3_multi();
     stl_learn::part4_comparator();
     stl_learn::part5_bound();
-    stl_learn::part_pitfalls();
-    stl_learn::part_exercises();
+    stl_learn::associative_containers_pitfalls();
+    stl_learn::associative_containers_exercises();
 }

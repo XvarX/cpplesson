@@ -60,9 +60,9 @@ void part5_heap();
 void part6_partition();
 
 // ── 常见陷阱 ─────────────────────────────────────────────────────────────────
-void part_pitfalls();
+void algorithms_sort_pitfalls();
 
 // ── 练习 ────────────────────────────────────────────────────────────────────
-void part_exercises();
+void algorithms_sort_exercises();
 
 } // namespace stl_learn

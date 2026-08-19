@@ -26,8 +26,8 @@ int main() {
     stl_learn::part4_combined();
 
     // 常见陷阱总结
-    stl_learn::part_pitfalls();
+    stl_learn::charconv_and_optional_monadic_pitfalls();
 
     // 练习建议
-    stl_learn::part_exercises();
+    stl_learn::charconv_and_optional_monadic_exercises();
 }

@@ -14,6 +14,6 @@ int main() {
     stl_learn::part3_adaptors();
     stl_learn::part4_custom_iterator();
     stl_learn::part5_ranges();
-    stl_learn::part_pitfalls();
-    stl_learn::part_exercises();
+    stl_learn::iterators_pitfalls();
+    stl_learn::iterators_exercises();
 }

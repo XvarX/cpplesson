@@ -46,9 +46,9 @@ void part4_replace();
 void part5_more_mod();
 
 // ── 常见陷阱 ─────────────────────────────────────────────────────────────────
-void part_pitfalls();
+void algorithms_mod_pitfalls();
 
 // ── 练习 ────────────────────────────────────────────────────────────────────
-void part_exercises();
+void algorithms_mod_exercises();
 
 } // namespace stl_learn

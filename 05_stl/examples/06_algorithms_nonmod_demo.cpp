@@ -15,6 +15,6 @@ int main() {
     stl_learn::part4_equal_mismatch();
     stl_learn::part5_predicates();
     stl_learn::part6_adjacent();
-    stl_learn::part_pitfalls();
-    stl_learn::part_exercises();
+    stl_learn::algorithms_nonmod_pitfalls();
+    stl_learn::algorithms_nonmod_exercises();
 }

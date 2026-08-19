@@ -169,7 +169,7 @@ void part5_bound() {
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  常见陷阱                                                                   ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-void part_pitfalls() {
+void associative_containers_pitfalls() {
     lesson::print_subtitle("常见陷阱");
 
     // 陷阱1: map的operator[]会在key不存在时插入默认值
@@ -201,7 +201,7 @@ void part_pitfalls() {
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  练习                                                                       ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-void part_exercises() {
+void associative_containers_exercises() {
     lesson::print_subtitle("练习");
 
     println("1. 用 map<string, vector<int>> 实现一个成绩管理表（姓名->多个成绩）");

@@ -3,6 +3,8 @@
 // ╚══════════════════════════════════════════════════════════════════════════════╝
 
 #include "stl/tuple_types.hpp"
+#include <algorithm>
+#include <numeric>
 #include <ranges>
 
 using namespace std;
@@ -224,7 +226,7 @@ void part5_any() {
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  常见陷阱                                                                   ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-void part_pitfalls() {
+void tuple_types_pitfalls() {
     lesson::print_subtitle("常见陷阱");
 
     // 陷阱1: optional 的 operator* 在空时是 UB (未定义行为)
@@ -248,7 +250,7 @@ void part_pitfalls() {
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  练习                                                                       ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-void part_exercises() {
+void tuple_types_exercises() {
     lesson::print_subtitle("练习");
 
     println("1. 用 pair 实现一个函数，返回 vector 中的最小值和最大值");

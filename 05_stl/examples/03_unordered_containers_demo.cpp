@@ -14,6 +14,6 @@ int main() {
     stl_learn::part3_bucket();
     stl_learn::part4_custom_hash();
     stl_learn::part5_comparison();
-    stl_learn::part_pitfalls();
-    stl_learn::part_exercises();
+    stl_learn::unordered_containers_pitfalls();
+    stl_learn::unordered_containers_exercises();
 }

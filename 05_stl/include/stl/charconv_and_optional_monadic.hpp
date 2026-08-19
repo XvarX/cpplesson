@@ -46,9 +46,9 @@ void part3_optional_monadic();
 void part4_combined();
 
 // ── 常见陷阱 ─────────────────────────────────────────────────────────────────
-void part_pitfalls();
+void charconv_and_optional_monadic_pitfalls();
 
 // ── 练习 ────────────────────────────────────────────────────────────────────
-void part_exercises();
+void charconv_and_optional_monadic_exercises();
 
 } // namespace stl_learn

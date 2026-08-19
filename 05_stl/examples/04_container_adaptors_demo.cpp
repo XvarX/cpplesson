@@ -14,6 +14,6 @@ int main() {
     stl_learn::part3_priority_queue();
     stl_learn::part4_custom_pq();
     stl_learn::part5_summary();
-    stl_learn::part_pitfalls();
-    stl_learn::part_exercises();
+    stl_learn::container_adaptors_pitfalls();
+    stl_learn::container_adaptors_exercises();
 }

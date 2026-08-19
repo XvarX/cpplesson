@@ -182,7 +182,7 @@ void part6_partition() {
     print("partition (偶数在前): ");
     for (auto x : v) print("{} ", x);
     println("");
-    println("分界点在索引: {}", distance(v.begin(), mid));
+    println("分界点在索引: {}", distance(v.begin(), mid.begin()));
     // 预期: 分界点索引 = 5 (5个偶数)
 
     // is_partitioned: 检查是否已分区
@@ -200,7 +200,7 @@ void part6_partition() {
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  常见陷阱                                                                   ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-void part_pitfalls() {
+void algorithms_sort_pitfalls() {
     lesson::print_subtitle("常见陷阱");
 
     // 陷阱1: binary_search 需要在有序序列上使用
@@ -222,7 +222,7 @@ void part_pitfalls() {
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  练习                                                                       ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-void part_exercises() {
+void algorithms_sort_exercises() {
     lesson::print_subtitle("练习");
 
     println("1. 用 sort + unique 实现对一个 vector 的完全去重（无重复元素）");

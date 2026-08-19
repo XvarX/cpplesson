@@ -115,7 +115,7 @@ void part4_custom_hash() {
     points.insert({1, 2});  // 重复，不会插入
 
     println("points 大小: {}", points.size());   // 预期: 2
-    println("contains({1,2}): {}", points.contains({1, 2})); // 预期: true
+    println("contains({{1,2}}): {}", points.contains({1, 2})); // 预期: true
 
     // unordered_map 的用法
     unordered_map<Point, string, PointHash> labels;
@@ -153,7 +153,7 @@ void part5_comparison() {
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  常见陷阱                                                                   ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-void part_pitfalls() {
+void unordered_containers_pitfalls() {
     lesson::print_subtitle("常见陷阱");
 
     // 陷阱1: 插入后迭代器可能因为 rehash 失效
@@ -185,13 +185,13 @@ void part_pitfalls() {
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  练习                                                                       ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-void part_exercises() {
+void unordered_containers_exercises() {
     lesson::print_subtitle("练习");
 
     println("1. 用 unordered_map 统计一段文本中每个单词出现的频率");
     println("2. 设计一个简单的 LRU 缓存 (提示: 需要 unordered_map + list)");
     println("3. 对 10 万个随机整数分别用 set 和 unordered_set 做插入+查找，比较性能");
-    println("4. 自定义一个 Person{name, age} 结构，以 name 为键存入 unordered_map");
+    println("4. 自定义一个 Person{{name, age}} 结构，以 name 为键存入 unordered_map");
     println("5. 解释 load_factor 设置过高或过低分别有什么后果");
 }
 

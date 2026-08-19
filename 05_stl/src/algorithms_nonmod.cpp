@@ -68,15 +68,15 @@ void part3_search() {
     vector<int> v{1, 2, 3, 4, 1, 2, 3, 5};
     vector<int> pattern{2, 3};
 
-    // search: 查找子序列第一次出现
-    auto it = ranges::search(v, pattern);
-    println("pattern {2,3} 首次出现在位置: {}", distance(v.begin(), it));
+    // search: 查找子序列第一次出现 (返回匹配到的子区间，取 .begin() 得起始位置)
+    auto match = ranges::search(v, pattern);
+    println("pattern {{2,3}} 首次出现在位置: {}", distance(v.begin(), match.begin()));
     // 预期: 1 (索引从0开始)
 
     // find_first_of: 查找 pattern 中任意元素第一次出现
     vector<int> targets{8, 9, 3};  // 查找 3 (因为在 v 中最早出现)
     auto it2 = ranges::find_first_of(v, targets);
-    println("targets 中 {8,9,3} 第一个匹配: {}", *it2);  // 预期: 3
+    println("targets 中 {{8,9,3}} 第一个匹配: {}", *it2);  // 预期: 3
 
     // 实际场景: 在字符串中查找子串
     string msg = "Error: something went wrong at line 42";
@@ -172,7 +172,7 @@ void part6_adjacent() {
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  常见陷阱                                                                   ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-void part_pitfalls() {
+void algorithms_nonmod_pitfalls() {
     lesson::print_subtitle("常见陷阱");
 
     // 陷阱1: find 找不到时返回 end()，不解引用
@@ -200,7 +200,7 @@ void part_pitfalls() {
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  练习                                                                       ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-void part_exercises() {
+void algorithms_nonmod_exercises() {
     lesson::print_subtitle("练习");
 
     println("1. 用 find_if 在一个 vector<string> 中查找长度大于 5 的第一个单词");

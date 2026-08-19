@@ -15,6 +15,6 @@ int main() {
     stl_learn::part4_random_engine();
     stl_learn::part5_distributions();
     stl_learn::part6_ratio();
-    stl_learn::part_pitfalls();
-    stl_learn::part_exercises();
+    stl_learn::chrono_random_pitfalls();
+    stl_learn::chrono_random_exercises();
 }

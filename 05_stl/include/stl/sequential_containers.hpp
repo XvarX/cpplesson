@@ -49,9 +49,9 @@ void part5_array();
 void part6_choose_container();
 
 // ── 常见陷阱 ─────────────────────────────────────────────────────────────────
-void part_pitfalls();
+void sequential_containers_pitfalls();
 
 // ── 练习 ────────────────────────────────────────────────────────────────────
-void part_exercises();
+void sequential_containers_exercises();
 
 } // namespace stl_learn
