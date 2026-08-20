@@ -115,12 +115,14 @@ public:
 // 为什么: 多重继承表达"同时是"关系; 虚基类避免菱形继承中的二义性和冗余
 // 何时用: 多重继承谨慎使用; 虚基类仅在菱形继承中必须时使用
 //
-//     ── 菱形继承问题 ──
-//            Person
-//           /      \
-//      Student   Teacher
-//           \      /
-//         TeachingAssistant
+/*
+ *     ── 菱形继承问题 ──
+ *            Person
+ *           /      \
+ *      Student   Teacher
+ *           \      /
+ *         TeachingAssistant
+ */
 
 class Person {
 public:
