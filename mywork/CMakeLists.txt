@@ -28,6 +28,16 @@ cmake_minimum_required(VERSION 3.20)
 # 模板位置: 01_fundamentals/
 # 敲完后取消下面代码的注释即可编译
 
+add_library(mywork_fundamentals STATIC
+    src/fundamentals/const_static.cpp
+)
+
+target_include_directories(mywork_fundamentals PUBLIC include)
+target_link_libraries(mywork_fundamentals PUBLIC lesson_utils)
+
+add_executable(const_demo examples/fundamentals/const_and_static_demo.cpp)
+target_link_libraries(const_demo PRIVATE mywork_fundamentals)
+
 # add_library(mywork_fundamentals STATIC
 #     src/fundamentals/types_literals.cpp
 #     src/fundamentals/const_static.cpp

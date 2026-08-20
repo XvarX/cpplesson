@@ -9,6 +9,13 @@ namespace fundamentals {
         return x*x;
     }
 
+    constexpr int factorial(int x) {
+        if(x == 0) {
+            return 1;
+        }
+        return factorial(x-1)*x;
+    }
+
     int create_counter();
 
     inline int inline_counter = 0;
