@@ -106,6 +106,41 @@ int main() {
 
     lesson::print_subtitle("Part 6: 类型转换");
 
-    
+    double d = 10;
+    std::println("隐式 int->double: {}", d);
+
+    int a = 10, b = 4;
+    double ratio = static_cast<double>(a) / b;
+    std::println("显示转换 10/4 = {}", ratio);
+
+    int truncated = static_cast<int>(3.99);
+    std::println("窄化 double->int (3.99): {} (小数被截断!)", truncated);
+
+    lesson::print_subtitle("Part 7: numeric_limits 查询");
+
+    std::println("int 最大值: {}", std::numeric_limits<int>::max());
+    std::println("int 最小值: {}", std::numeric_limits<int>::min());
+    std::println("double 最低整数: {}", std::numeric_limits<double>::min());
+    std::println("double 最大值: {}", std::numeric_limits<double>::max());
+
+
+    std::println("10进制: {}", 1024);
+    std::println("16进制: {}", 0x400);
+    std::println("8进制:{}", 02000);
+    std::println("二进制:{}", 0b10000000000);
+    std::println("10进制带分割号: {}", 1'024);
+
+    std::println("int 长度: {}", sizeof(int));
+    std::println("double 长度: {}", sizeof(double));
+    std::println("long 长度: {}", sizeof(long));
+    std::println("long long 长度: {}", sizeof(long long));
+
+
+    std::println("0.1+0.2 = {}", static_cast<int>(0.1+0.2));
+
+    std::println("long long 最大值: {}", std::numeric_limits<unsigned long long>::max());
+
+    auto f = 3.14f;
+    std::println("f is float : {}", std::is_same_v<decltype(f), float>);
 
 }

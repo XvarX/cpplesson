@@ -29,14 +29,22 @@ cmake_minimum_required(VERSION 3.20)
 # 敲完后取消下面代码的注释即可编译
 
 add_library(mywork_fundamentals STATIC
+    src/fundamentals/types_literals.cpp
     src/fundamentals/const_static.cpp
+    src/fundamentals/arrays_strings.cpp
 )
 
 target_include_directories(mywork_fundamentals PUBLIC include)
 target_link_libraries(mywork_fundamentals PUBLIC lesson_utils)
 
-add_executable(const_demo examples/fundamentals/const_and_static_demo.cpp)
+add_executable(types_demo examples/fundamentals/01_types_and_literals_demo.cpp)
+target_link_libraries(types_demo PRIVATE mywork_fundamentals)
+
+add_executable(const_demo examples/fundamentals/02_const_and_static_demo.cpp)
 target_link_libraries(const_demo PRIVATE mywork_fundamentals)
+
+add_executable(arrays_demo examples/fundamentals/03_arrays_and_strings_demo.cpp)
+target_link_libraries(arrays_demo PRIVATE mywork_fundamentals)
 
 # add_library(mywork_fundamentals STATIC
 #     src/fundamentals/types_literals.cpp

@@ -76,5 +76,12 @@ int main() {
     std::println("consteval compile_square(5) 编译期: {}", c5);
 
     static_assert(fundamentals::factorial(5) == 120, "constexpr 函数应该在编译期执行");
+    
+    int x;
+    std::cin >> x;
+    int square_x = fundamentals::square(x);
+    std::println("square x: {}", square_x);
+
+    constinit static int aaa = 100;
 
 }
