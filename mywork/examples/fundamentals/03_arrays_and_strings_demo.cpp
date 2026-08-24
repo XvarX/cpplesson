@@ -5,7 +5,7 @@
 #include <cstddef>
 #include <algorithm>
 #include "shared/lesson_utils.hpp"
-#include "fundamentals/arrays_strings.hpp"
+#include "fundamentals/my_arrays_strings.hpp"
 
 int main() {
     lesson::print_header("03 C风格数组、字符串、std::array 于指针算术");
@@ -105,8 +105,43 @@ int main() {
     std::println("                 {} {} {}", mat2[1][0], mat2[1][1], mat2[1][2]);
 
     int array[] = {1, 2, 3, 4, 5, 6};
-    fundamentals::reverse1(array, 6);
+    std::array<int, 6> myarray = {1,2,3,4,5,6};
 
-    std::println("array reverse, {}", array[0]);
+    fundamentals::reverse4(&myarray);
 
+    std::println("array reverse, {}", myarray[0]);
+
+    const char* mystr = "abcde";
+    
+    std::println("mystr length, {}", fundamentals::mystrlen(mystr));
+
+    std::println("sizeof array: {}", fundamentals::printsizeof(array));
+
+    int triarray[2][2][3] = {
+        {
+            {1,2,3},
+            {4,5,6},
+        },
+        {
+            {7,8,9},
+            {4,5,6},
+        },
+    };
+
+    std::array<std::array<std::array<int, 3>, 2>, 2> triarray2 = {
+            {
+                {
+                    {
+                        {1,2,3},
+                        {4,5,6}
+                    }
+                },
+                {
+                    {
+                        {7,8,9},
+                        {4,5,6}
+                    }
+                }
+            }
+        };
 }
