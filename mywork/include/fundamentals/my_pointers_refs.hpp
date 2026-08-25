@@ -21,4 +21,6 @@ namespace fundamentals {
     using SingleIntOp = int (*)(const int&);
 
     void foreach(SingleIntOp op, int array[], int N);
+
+    int** alloc_2d_int(int rows, int cols);
 }

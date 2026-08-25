@@ -1,3 +1,4 @@
+#include<memory>
 #include "fundamentals/my_pointers_refs.hpp"
 
 namespace fundamentals {
@@ -41,6 +42,20 @@ namespace fundamentals {
     void foreach(SingleIntOp op, int array[], int N) {
         for(int i=0; i < N; i++) {
             array[i] = op(array[i]);
+        }
+    }
+
+    int** alloc_2d_int(int rows, int cols) {
+        int** arr = static_cast<int**>(malloc(sizeof(int*) * rows));
+        if (arr == nullptr) {
+            return nullptr;
+        }
+
+        for(int i=0;i < rows; i++) {
+            arr[i] = static_cast<int*>(malloc(sizeof(int) * cols));
+            if(arr[i] == nullptr) {
+                
+            }
         }
     }
 }
