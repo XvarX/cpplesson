@@ -11,4 +11,14 @@ namespace fundamentals {
     using BinaryIntOp = int (*)(int, int);
 
     int calc_v2(int x, int y, BinaryIntOp op);
+
+    void swap(int* x, int* y);
+
+    void swap2(int& x, int& y);
+
+    int trimul(const int& x);
+
+    using SingleIntOp = int (*)(const int&);
+
+    void foreach(SingleIntOp op, int array[], int N);
 }

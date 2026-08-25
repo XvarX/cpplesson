@@ -221,3 +221,44 @@ int main() {
 
     return 0;
 }
+int** alloc_2d_int(int rows, int cols)
+{
+    // 第一步：分配行指针数组：int* 数组，共 rows 个指针
+    int** arr = (int**)malloc(sizeof(int*) * rows);
+    if (arr == NULL)
+    {
+        return NULL;
+    }
+
+    // 第二步：每一行分配 int 一维内存
+    for (int i = 0; i < rows; i++)
+    {
+        arr[i] = (int*)malloc(sizeof(int) * cols);
+        if (arr[i] == NULL)
+        {
+            // 分配失败：已经分配好的行要先释放，防止内存泄漏
+            free_2d_int(arr, i);
+            return NULL;
+        }
+    }
+    return arr;
+}
+
+/**
+ * @brief 释放 int** 二维数组
+ * @param arr 二维数组指针
+ * @param rows 行数
+ */
+void free_2d_int(int** arr, int rows)
+{
+    if (arr == NULL)
+        return;
+
+    // 1. 先释放每一行的数据内存
+    for (int i = 0; i < rows; i++)
+    {
+        free(arr[i]);
+    }
+    // 2. 再释放外层指针数组
+    free(arr);
+}
