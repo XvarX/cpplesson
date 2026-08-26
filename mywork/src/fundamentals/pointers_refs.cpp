@@ -55,7 +55,22 @@ namespace fundamentals {
             arr[i] = static_cast<int*>(malloc(sizeof(int) * cols));
             if(arr[i] == nullptr) {
                 
+                return nullptr;
             }
         }
+        return arr;
     }
+
+    void free_2d_int(int **arr, int rows) {
+        if (arr == nullptr) {
+            return;
+        }
+
+        for (int i=0; i < rows; i++) {
+            free(arr[i]);
+        }
+
+        free(arr);
+    }
+
 }

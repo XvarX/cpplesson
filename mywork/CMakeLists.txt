@@ -33,6 +33,7 @@ add_library(mywork_fundamentals STATIC
     src/fundamentals/const_static.cpp
     src/fundamentals/arrays_strings.cpp
     src/fundamentals/pointers_refs.cpp
+    src/fundamentals/functions_basics.cpp
 )
 
 target_include_directories(mywork_fundamentals PUBLIC include)
@@ -49,6 +50,9 @@ target_link_libraries(arrays_demo PRIVATE mywork_fundamentals)
 
 add_executable(pointers_demo examples/fundamentals/04_pointers_and_refs_demo.cpp)
 target_link_libraries(pointers_demo PRIVATE mywork_fundamentals)
+
+add_executable(functions_demo examples/fundamentals/05_function_basics_demo.cpp)
+target_link_libraries(functions_demo PRIVATE mywork_fundamentals)
 
 # add_library(mywork_fundamentals STATIC
 #     src/fundamentals/types_literals.cpp
