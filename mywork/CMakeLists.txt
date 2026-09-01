@@ -34,6 +34,7 @@ add_library(mywork_fundamentals STATIC
     src/fundamentals/arrays_strings.cpp
     src/fundamentals/pointers_refs.cpp
     src/fundamentals/functions_basics.cpp
+    src/fundamentals/control_flow.cpp
 )
 
 target_include_directories(mywork_fundamentals PUBLIC include)
@@ -53,6 +54,10 @@ target_link_libraries(pointers_demo PRIVATE mywork_fundamentals)
 
 add_executable(functions_demo examples/fundamentals/05_function_basics_demo.cpp)
 target_link_libraries(functions_demo PRIVATE mywork_fundamentals)
+
+add_executable(control_demo examples/fundamentals/06_control_flow_demo.cpp)
+target_link_libraries(control_demo PRIVATE mywork_fundamentals)
+
 
 # add_library(mywork_fundamentals STATIC
 #     src/fundamentals/types_literals.cpp

@@ -36,4 +36,79 @@ namespace fundamentals {
                 break;
         }
     }
+
+    void printmonthday(const int& month) {
+        switch(month) {
+            case 1: case 3:case 5:case 7: case 8: case 10: case 12:
+                std::println("{}月份有 31 天", month);
+                break;
+            case 4:case 6:case 9:case 11:
+                std::println("{}月份有 30 天", month);
+                break;
+            case 2:
+                std::println("2月份有 28 天");
+                [[fallthrough]];
+            default:
+                std::println("你输入的月份不对");
+        }
+    }
+
+    void print99() {
+        for(int i = 1; i <= 9; i++) {
+            for (int j = 1; j <= 9; j++) {
+                std::print("{}x{} = {}",i, j, i*j);
+                std::print(" ");
+            }
+            std::println("");
+        }
+    }
+
+    int calsum(const int& x) {
+        int iSum = x;
+        int iResult = 0;
+        while(iSum != 0) {
+            iResult += iSum%10;
+            iSum = iSum/10;
+        }
+        return iResult;
+    }
+
+    bool findbinary(const std::vector<int>& vec, const int& x) {
+        int len = vec.size();
+        int index = (len-1)/2;
+        int startindex = 0;
+        int endindex = len-1;
+        int iFlag = 0;
+
+        while(true) {
+            if (startindex == index || endindex == index) {
+                if (vec[startindex] == x) {
+                    iFlag = 1;
+                } else if (vec[endindex] == x) {
+                    iFlag = 1;
+                }
+
+                break;
+            } else {
+
+                if (vec[index] == x) {
+                    iFlag = 1;
+                    break;
+                } else if (vec[index] < x) {
+                    startindex = index;
+                    index = (startindex+endindex)/2;
+                } else if (vec[index] > x) {
+                    endindex = index;
+                    index = (startindex+endindex)/2;
+                }
+            }
+        }
+
+        if(iFlag == 1) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 }
