@@ -330,6 +330,12 @@ void pitfalls() {
         lesson::print_subtitle("陷阱4: UDL 运算符不能是类成员");
         lesson::print_warn("UDL 必须在全局或命名空间作用域定义, class 内不行");
     }
+
+    // 陷阱5: 浮点 UDL 精度
+    {
+        lesson::print_subtitle("陷阱5: 浮点 UDL 精度 —— long double 不是 double");
+        lesson::print_note("1.5_km 实际传入的是 long double (1.5L), 需要显式转换");
+    }
 }
 
 // ╔══════════════════════════════════════════════════════════════════════════════╗

@@ -1,9 +1,9 @@
+#pragma once
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  stl/algorithms_mod.hpp — 修改序列操作                                       ║
 // ║  主题: copy/transform/remove/replace/generate/fill/unique                    ║
 // ║  声明教学演示函数，供示例程序调用                                              ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-#pragma once
 
 #include "shared/lesson_utils.hpp"
 #include <algorithm>

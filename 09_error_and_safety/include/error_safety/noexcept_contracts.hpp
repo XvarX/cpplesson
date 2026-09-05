@@ -1,10 +1,9 @@
+#pragma once
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  error_safety/noexcept_contracts.hpp — noexcept 与契约                      ║
 // ║  可复用的类型: SafeString (强异常安全保证), NoNoexceptMove, YesNoexceptMove ║
 // ║  可复用的函数: safeAdd, conditionalSwap, computeImportantValue, 等           ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-
-#pragma once
 
 #include <string>
 #include <string_view>

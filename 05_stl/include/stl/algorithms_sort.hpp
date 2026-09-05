@@ -1,9 +1,9 @@
+#pragma once
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  stl/algorithms_sort.hpp — 排序与二分查找                                    ║
 // ║  主题: sort/stable_sort/merge/heap/partition/binary_search                   ║
 // ║  声明教学演示函数，供示例程序调用                                              ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-#pragma once
 
 #include "shared/lesson_utils.hpp"
 #include <algorithm>

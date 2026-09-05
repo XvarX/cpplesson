@@ -227,7 +227,12 @@ int main() {
     std::cout << "     → 还需要: 所有非静态成员为 literal type + 至少一个 constexpr 构造\n\n";
     std::cout << "  4. std::unreachable() 不是错误处理机制\n";
     std::cout << "     → 它告知编译器\"这里不可达\"来优化代码\n";
-    std::cout << "     → 如果运行时真的执行到 → UB (未定义行为)\n";
+    std::cout << "     → 如果运行时真的执行到 → UB (未定义行为)\n\n";
+    std::cout << "  5. 编译器对 constexpr new 的内存有限制\n";
+    std::cout << "     → 编译期 new 使用编译器的虚拟内存, 不同编译器有不同上限\n";
+    std::cout << "     → 大量的编译期分配会显著拖慢编译甚至编译失败\n\n";
+    std::cout << "  6. constexpr new 和 delete 必须在同一个常量表达式中完成\n";
+    std::cout << "     → 不能在 constexpr 函数 A 中 new, 再到函数 B 中 delete\n";
 
     // ════════════════════════════════════════════════════════════════════════════
     // 练习
@@ -243,5 +248,10 @@ int main() {
     std::cout << "  4. 实现一个 constexpr 字符串拼接函数\n";
     std::cout << "     输入: std::string_view a, b → 输出: 编译期拼接结果\n\n";
     std::cout << "  5. 找一段现有的 switch-case 代码, 分析哪些 default 分支是真正不可达的\n";
-    std::cout << "     把那些不可达的 default 替换为 std::unreachable()\n";
+    std::cout << "     把那些不可达的 default 替换为 std::unreachable()\n\n";
+    std::cout << "  6. 用 ConstexprVector 实现一个编译期排序算法\n";
+    std::cout << "     不依赖标准库, 用 static_assert 验证排序结果\n\n";
+    std::cout << "  7. 设计一个编译期 RAII 锁 (模拟)\n";
+    std::cout << "     构造时打印 \"Acquired\", 析构时打印 \"Released\"\n";
+    std::cout << "     验证在 constexpr 上下文中析构函数确实被调用了\n";
 }

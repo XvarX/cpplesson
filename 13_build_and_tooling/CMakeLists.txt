@@ -56,7 +56,7 @@ target_link_libraries(build_tooling_lib PUBLIC
 
 # 01: CMake target 属性传递模拟 + CTest 运行器演示
 add_executable(01_cmake_deep_dive_demo
-    examples/cmake_deep_dive_demo.cpp
+    examples/01_cmake_deep_dive_demo.cpp
 )
 target_link_libraries(01_cmake_deep_dive_demo PRIVATE
     build_tooling_lib
@@ -64,7 +64,7 @@ target_link_libraries(01_cmake_deep_dive_demo PRIVATE
 
 # 02: 调试与消毒器 — assert / ASan / UBSan / NDEBUG 演示
 add_executable(02_debug_sanitizer_demo
-    examples/debug_sanitizer_demo.cpp
+    examples/02_debug_sanitizer_demo.cpp
 )
 target_link_libraries(02_debug_sanitizer_demo PRIVATE
     build_tooling_lib
@@ -72,7 +72,7 @@ target_link_libraries(02_debug_sanitizer_demo PRIVATE
 
 # 03: 预处理器 — 宏、条件编译、__has_include、平台检测
 add_executable(03_preprocessor_demo
-    examples/preprocessor_demo.cpp
+    examples/03_preprocessor_demo.cpp
 )
 target_link_libraries(03_preprocessor_demo PRIVATE
     build_tooling_lib

@@ -1,10 +1,9 @@
+#pragma once
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  error_safety/error_code.hpp — std::error_code 与 system_error               ║
 // ║  可复用的类型: GameErrorCategory (自定义错误类别), GameError 枚举           ║
 // ║  可复用的函数: readFileContent, make_error_code                             ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-
-#pragma once
 
 #include <string>
 #include <string_view>

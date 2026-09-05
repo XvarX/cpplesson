@@ -126,12 +126,3 @@ void multi_constrained(std::integral auto n, std::floating_point auto x,
                        std::convertible_to<std::string> auto s) {
     std::println("整数: {}, 浮点: {}, 可转字符串: {}", n, x, s);
 }
-
-// ═══════════════════════════════════════════════════════════════════════════════
-// 常见陷阱
-// ═══════════════════════════════════════════════════════════════════════════════
-// 1. concept 约束的是接口，不是实现细节
-// 2. requires 表达式中的代码不会真正执行，只检查合法性
-// 3. 简写语法的每个 auto 都是独立推导，类型可以不同！
-// 4. concept 不能递归引用自己（concept A 依赖 concept B，B 又依赖 A）
-// 5. SFINAE 仍然需要理解：大量旧代码和库还在用，concept 是新标准

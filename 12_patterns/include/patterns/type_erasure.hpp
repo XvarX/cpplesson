@@ -1,3 +1,4 @@
+#pragma once
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  type_erasure.hpp — 类型擦除                                               ║
 // ║  隐藏具体类型,用统一接口操作不同类型的对象                                  ║
@@ -13,8 +14,6 @@
 //   - 统一容器存储无关类型 (如 std::vector<Drawable>)
 //   - 回调/策略模式 (std::function)
 //   - 插件系统
-
-#pragma once
 
 #include <memory>
 #include <string>

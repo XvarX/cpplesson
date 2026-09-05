@@ -272,6 +272,8 @@ int main() {
     std::println("  5. 有界队列 + 析构前的 submit → 如果析构后仍在 acquire, 可能死锁");
     std::println("  6. 捕获 this 指针的 lambda → 确保线程池生命周期长于提交的任务");
     std::println("  7. 锁内执行耗时任务 → 阻塞所有其他线程, 破坏并行性 (应在锁外执行)");
+    std::println("  8. resize() 减少线程是协作式缩容 → 被裁减线程完成当前任务后才检查 ID 退出, 非\"立即\"缩容");
+    std::println("  9. pending_tasks_ 用 memory_order_relaxed → 仅用于日志/监控, 不参与线程同步 (同步由 mutex/cv 保证)");
 
     // ═══════════════════════════════════════════════════════════════════════════
     // 📝 练习
@@ -285,6 +287,10 @@ int main() {
     std::println("       - 并行矩阵乘法 (1000x1000 矩阵, 分块计算)");
     std::println("       - 高并发短任务 (10000 个 1ms 任务 vs 4 个 2500ms 任务)");
     std::println("  6. 为线程池添加统计功能: 已完成任务数、平均等待时间、最大队列长度");
+    std::println("  7. 用本线程池实现并行快速排序 (每次递归 submit 两个子任务)");
+    std::println("       - 注意 future 的生命周期管理和递归深度控制");
+    std::println("  8. 对比 jthread + stop_token 与手动 thread + atomic<bool> 的代码量差异");
+    std::println("       - 关注异常安全和资源泄漏的情况");
 
     return 0;
 }

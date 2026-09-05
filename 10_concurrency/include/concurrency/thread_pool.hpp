@@ -1,3 +1,4 @@
+#pragma once
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  concurrency/thread_pool.hpp — 线程池 (Thread Pool)                           ║
 // ║                                                                              ║
@@ -40,8 +41,6 @@
 // ║    - 解耦任务提交与任务执行 (生产者-消费者模式)                               ║
 // ║    - 统一管理线程生命周期 (RAII + stop_token)                                 ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-
-#pragma once
 
 #include <atomic>
 #include <condition_variable>
@@ -302,66 +301,5 @@ auto ThreadPool::submit(F&& f, Args&&... args)
 
     return result;
 }
-
-// ═══════════════════════════════════════════════════════════════════════════════
-// ⚠️ 常见陷阱
-// ═══════════════════════════════════════════════════════════════════════════════
-//
-//  1. packaged_task 不可拷贝
-//     → 必须用 shared_ptr 或 move + lambda 捕获来间接持有
-//     → 直接写 tasks_.push(packaged_task_obj) 会编译失败
-//
-//  2. future::get() 只能调用一次
-//     → get() 后 future 状态变为 invalid, 再次调用会抛异常
-//     → 如果需要多次读取结果, 使用 shared_future (future.share())
-//
-//  3. submit() 返回的 future 必须被消费或移动
-//     → 如果忽略返回值 (discarded future), 析构时可能阻塞等待任务完成
-//     → 对于"发射后不管" (fire-and-forget) 的任务, 考虑使用单独的接口
-//
-//  4. 有界队列 + 析构的潜在死锁
-//     → 如果析构时所有 worker 都在等待信号量 acquire(), 而 submit 已无法继续,
-//       析构函数中的 notify_all + request_stop 可以唤醒它们
-//     → 但如果 submit 本身持有信号量槽位(已 acquire 但未入队)... 需要仔细设计
-//     → ⚠️ 本实现的简单信号量方案假定 submit 在 acquire 后一定能入队 (不会抛异常)
-//
-//  5. stop_token 是协作式的
-//     → 如果任务函数不检查 stop_token 且长期运行, 析构会一直阻塞
-//     → 工作线程不会在执行任务中途被强制杀死
-//
-//  6. 任务异常处理
-//     → 任务抛出异常时, packaged_task 会将异常传播到 future::get()
-//     → 工作线程本身不会因任务异常而崩溃 (std::function<void()> 内部捕获)
-//     → 调用者必须通过 future::get() 检查并处理异常
-//
-//  7. resize() 减少线程时的时序问题
-//     → 被裁减的线程可能正在执行任务, 会完成当前任务后才检查 ID 并退出
-//     → 这不是"立即"缩容, 是"协作式"缩容
-//
-//  8. memory_order_relaxed 用于 pending_count 监控
-//     → pending_tasks_ 使用 relaxed 因为仅用于日志/监控, 不参与线程同步
-//     → 实际的同步由 mutex 和条件变量保证
-
-// ═══════════════════════════════════════════════════════════════════════════════
-// 📝 练习
-// ═══════════════════════════════════════════════════════════════════════════════
-//
-//  1. 为线程池添加 drain() 方法: 排空队列中所有剩余任务后才停止
-//     (提示: 在 request_stop 前先等待 pending_tasks_ 归零)
-//
-//  2. 实现带超时的 submit(): 如果队列满超过指定时间, 返回 std::nullopt
-//     (提示: 使用 counting_semaphore::try_acquire_for)
-//
-//  3. 为线程池添加任务优先级: 用 std::priority_queue 替换 std::queue
-//     (提示: 包装成 std::function<int()> 返回优先级, 或使用 variant)
-//
-//  4. 分析并修复"有界队列下析构"的潜在死锁问题
-//     (提示: 考虑析构时额外 release 信号量, 或在 worker 退出前 release)
-//
-//  5. 用本线程池实现并行快速排序 (每次递归 submit 两个子任务)
-//     (提示: 注意 future 的生命周期管理和递归深度控制)
-//
-//  6. 对比 jthread + stop_token 与手动 thread + atomic<bool> 的代码量差异
-//     (提示: 关注异常安全和资源泄漏的情况)
 
 }  // namespace concurrency

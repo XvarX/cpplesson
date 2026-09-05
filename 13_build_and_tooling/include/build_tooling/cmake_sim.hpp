@@ -1,8 +1,8 @@
+#pragma once
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  build_tooling/cmake_sim.hpp — 用 C++ 类模拟 CMake target 属性传递          ║
 // ║  主题: PUBLIC / PRIVATE / INTERFACE 的语义区别                              ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-#pragma once
 
 #include <string>
 #include <vector>

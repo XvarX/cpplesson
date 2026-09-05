@@ -1,9 +1,9 @@
+#pragma once
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  stl/algorithms_nonmod.hpp — 非修改序列操作                                  ║
 // ║  主题: find/count/search/equal/mismatch/谓词判断                             ║
 // ║  声明教学演示函数，供示例程序调用                                              ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-#pragma once
 
 #include "shared/lesson_utils.hpp"
 #include <algorithm>

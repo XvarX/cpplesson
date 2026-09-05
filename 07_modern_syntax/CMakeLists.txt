@@ -59,22 +59,22 @@ target_link_libraries(modern_syntax_lib PUBLIC
 # ---- Examples ----
 # 每个示例是独立的可执行文件，PRIVATE 链接 modern_syntax_lib
 
-add_executable(01_auto_decltype_demo examples/auto_decltype_demo.cpp)
+add_executable(01_auto_decltype_demo examples/01_auto_decltype_demo.cpp)
 target_link_libraries(01_auto_decltype_demo PRIVATE modern_syntax_lib)
 
-add_executable(02_ctad_demo examples/ctad_demo.cpp)
+add_executable(02_ctad_demo examples/02_ctad_demo.cpp)
 target_link_libraries(02_ctad_demo PRIVATE modern_syntax_lib)
 
-add_executable(03_enum_class_demo examples/enum_class_demo.cpp)
+add_executable(03_enum_class_demo examples/03_enum_class_demo.cpp)
 target_link_libraries(03_enum_class_demo PRIVATE modern_syntax_lib)
 
-add_executable(04_init_and_designated_demo examples/init_and_designated_demo.cpp)
+add_executable(04_init_and_designated_demo examples/04_init_and_designated_demo.cpp)
 target_link_libraries(04_init_and_designated_demo PRIVATE modern_syntax_lib)
 
-add_executable(05_range_for_init_if_demo examples/range_for_init_if_demo.cpp)
+add_executable(05_range_for_init_if_demo examples/05_range_for_init_if_demo.cpp)
 target_link_libraries(05_range_for_init_if_demo PRIVATE modern_syntax_lib)
 
-add_executable(06_structured_bindings_demo examples/structured_bindings_demo.cpp)
+add_executable(06_structured_bindings_demo examples/06_structured_bindings_demo.cpp)
 target_link_libraries(06_structured_bindings_demo PRIVATE modern_syntax_lib)
 
 add_executable(07_user_defined_literals_demo examples/07_user_defined_literals_demo.cpp)

@@ -1,3 +1,4 @@
+#pragma once
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  crtp.hpp — CRTP (Curiously Recurring Template Pattern)                     ║
 // ║  静态多态: 编译期绑定,零虚函数开销                                          ║
@@ -13,8 +14,6 @@
 // 与虚函数对比:
 //   - 虚函数: 运行时多态,有 vtable 开销,可以统一容器存储
 //   - CRTP:   编译期多态,零开销,但每个派生类产生不同的基类类型
-
-#pragma once
 
 #include <print>
 #include <string>

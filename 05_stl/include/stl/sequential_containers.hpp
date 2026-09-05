@@ -1,9 +1,9 @@
+#pragma once
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  stl/sequential_containers.hpp — 顺序容器                                   ║
 // ║  主题: vector / deque / list / forward_list / array                         ║
 // ║  声明教学演示函数，供示例程序调用                                              ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-#pragma once
 
 #include "shared/lesson_utils.hpp"
 #include <array>

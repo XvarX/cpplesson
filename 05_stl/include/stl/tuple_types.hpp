@@ -1,9 +1,9 @@
+#pragma once
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  stl/tuple_types.hpp — 多值与可选类型                                       ║
 // ║  主题: pair / tuple / optional / variant / any / visit / 结构化绑定          ║
 // ║  声明教学演示函数，供示例程序调用                                              ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-#pragma once
 
 #include "shared/lesson_utils.hpp"
 #include <any>

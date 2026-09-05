@@ -1,9 +1,9 @@
+#pragma once
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  stl/charconv_and_optional_monadic.hpp — 高性能转换与 optional 单子操作      ║
 // ║  主题: to_chars/from_chars (高性能字符串转换)、optional 单子操作 (C++23)      ║
 // ║  声明教学演示函数，供示例程序调用                                              ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-#pragma once
 
 #include "shared/lesson_utils.hpp"
 #include <charconv>

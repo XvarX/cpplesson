@@ -58,11 +58,12 @@ int main() {
         // 注意：返回类型也是 auto，编译期推导
     }
 
-    lesson::print_separator("常见陷阱速查");
-    std::println("1. 模板定义必须在头文件中可见");
-    std::println("2. 类型推导冲突 -> 显式指定模板实参");
-    std::println("3. 引用折叠规则是 T&& 万能引用的基础");
-    std::println("4. auto 模板参数简洁但丧失了 SFINAE 能力");
+    lesson::print_separator("常见陷阱");
+    std::println("1. 模板定义必须放在头文件（或使用处可见），不能分离到 .cpp —— 编译器需要完整定义才能实例化");
+    std::println("2. 每个不同的 T 组合都生成一份新代码（代码膨胀）—— 类型少时可显式实例化减少编译时间");
+    std::println("3. 类型推导冲突 my_max(3, 5.0) 编译失败 —— 用 my_max<double>(3, 5.0) 显式指定");
+    std::println("4. 引用折叠规则是 T&& 万能引用的基础");
+    std::println("5. auto 模板参数简洁，但不能用于 SFINAE/偏特化，且错误信息可能滞后");
 
     return 0;
 }

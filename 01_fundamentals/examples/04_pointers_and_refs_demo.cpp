@@ -221,6 +221,8 @@ int main() {
 
     return 0;
 }
+void free_2d_int(int** arr, int rows);  // 前向声明: alloc_2d_int 内部错误路径需要调用它
+
 int** alloc_2d_int(int rows, int cols)
 {
     // 第一步：分配行指针数组：int* 数组，共 rows 个指针

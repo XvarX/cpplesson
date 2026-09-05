@@ -1,10 +1,9 @@
+#pragma once
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  error_safety/exceptions.hpp — 异常机制基础                                  ║
 // ║  可复用的类型: DatabaseConnection, ScopeGuard                                ║
 // ║  可复用的函数: deepFunction, maybeThrow                                      ║
 // ╚══════════════════════════════════════════════════════════════════════════════════╝
-
-#pragma once
 
 #include <string>
 #include <string_view>

@@ -50,26 +50,6 @@ struct Widget {
 // 何时用: (1) 大量固定大小对象的频繁创建/销毁 (粒子系统、网络包、游戏实体)
 //         (2) 需要确定性分配性能的场景 (实时系统)
 //         (3) 需要控制对象内存布局 (连续存储可大幅提升缓存命中率)
-//
-// 常见陷阱:
-//   [TRAP 1] 忘记手动析构: pool 只管理内存，不自动调用析构函数!
-//            用 destroy(p) 或 std::destroy_at(p) 手动析构。所有块在
-//            destroy() 析构后，必须由 MemoryPool 析构函数统一释放。
-//   [TRAP 2] 使用已归还的指针: release(p) 后继续使用 p 是未定义行为。
-//   [TRAP 3] 内存池容量固定: 超出 BlockCount 的分配请求会返回 nullptr，
-//            需要在调用方检查。生产环境可采用动态扩容策略。
-//   [TRAP 4] 跨线程使用不保证安全: 本实现不是线程安全的。
-//            多线程场景需要加锁或使用 thread_local 池。
-//   [TRAP 5] 对齐问题: 如果 T 的对齐要求超过 sizeof(void*)，
-//            freelist 的 union 方案可能不满足对齐。生产代码应使用 alignas。
-//
-// 练习:
-//   1. 为 MemoryPool 添加 allocate_array(n) 方法，分配连续 n 个块
-//   2. 实现线程安全的 ThreadSafeMemoryPool<T, N> (使用 std::mutex)
-//   3. 实现动态扩容的内存池，超出容量时从堆分配新的 chunk
-//   4. 用 benchmark 对比 MemoryPool vs new/delete 的性能差异
-//   5. (进阶) 阅读 mimalloc 或 jemalloc 的源码，理解工业级内存池设计
-// ═══════════════════════════════════════════════════════════════════════════════
 
 template <typename T, std::size_t BlockCount>
 class MemoryPool {

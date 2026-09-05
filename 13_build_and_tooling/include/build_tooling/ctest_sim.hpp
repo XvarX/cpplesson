@@ -1,8 +1,8 @@
+#pragma once
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  build_tooling/ctest_sim.hpp — 用 C++ 类模拟 CTest 测试运行器               ║
 // ║  主题: add_test 注册 + run_all 运行 (对应 enable_testing / ctest)           ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-#pragma once
 
 #include <functional>
 #include <string>

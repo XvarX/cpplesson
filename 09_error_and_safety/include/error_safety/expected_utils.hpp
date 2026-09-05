@@ -1,3 +1,4 @@
+#pragma once
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  error_safety/expected_utils.hpp — std::expected<T,E> (C++23)               ║
 // ║  可复用的类型: ParseError, DivError 枚举                                     ║
@@ -5,8 +6,6 @@
 // ║               clampToRange, doubleIt, safeDivideOpt, safeDivideExp,          ║
 // ║               safeDivideThrow                                                ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-
-#pragma once
 
 #include <expected>      // C++23: std::expected
 #include <optional>      // 对比用

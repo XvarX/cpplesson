@@ -1,3 +1,4 @@
+#pragma once
 // ╔══════════════════════════════════════════════════════════════════════════════╗
 // ║  concurrency/atomic_utils.hpp — std::atomic 与无锁编程                       ║
 // ║                                                                              ║
@@ -20,8 +21,6 @@
 // ║    compare_exchange_strong — 保证只有值真正不同时才返回 false                  ║
 // ║    compare_exchange_weak   — 允许伪失败, 性能更高, 需配合 while 循环           ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
-
-#pragma once
 
 #include <atomic>
 #include <print>
