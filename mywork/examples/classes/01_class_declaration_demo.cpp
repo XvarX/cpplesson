@@ -6,7 +6,7 @@
 
 using namespace lesson;
 
-void print1_struct_vs_class() {
+void part1_struct_vs_class() {
     print_subtitle("Part 1: class vs struct");
 
     Point p{3.0, 4.0};
@@ -46,4 +46,31 @@ void part4_static_members() {
         Student s2("李四");
         std::println("两人在校: {}", Student::total());
     }
+
+    std::println("出作用域后: {}", Student::total());
+}
+
+void part5_const_member() {
+    print_subtitle("Part 5: const 成员函数");
+
+    Temperature t(25.0);
+    std::println("摄氏: {:1f}, 华氏: {:.1f}", t.get_celsius(), t.get_fahrenheit());
+
+    const Temperature ct(0.0);
+    std::println("冰点华氏: {:.1f}", ct.get_fahrenheit());
+
+    for(int i = 0; i < 3; ++i) t.cached_fahrenheit();
+    std::println("缓存访问次数: {}", t.read_count);
+}
+
+
+int main() {
+    print_header("01 类的声明与基础");
+    part1_struct_vs_class();
+    part2_access_control();
+    part3_this_pointer();
+    part4_static_members();
+    part5_const_member();
+    std::println("01_class_declaration 完成! ");
+    return 0;
 }

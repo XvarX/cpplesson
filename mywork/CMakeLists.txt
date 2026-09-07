@@ -87,6 +87,24 @@ target_link_libraries(control_demo PRIVATE mywork_fundamentals)
 # ═══════════════════════════════════════════════════════════════════════════════
 # 第 2 章 — classes (类与面向对象)
 # ═══════════════════════════════════════════════════════════════════════════════
+
+add_library(mywork_classes STATIC
+    src/classes/class_basics.cpp
+    # src/classes/ctor_dtor.cpp
+    # src/classes/copy_move.cpp
+    # src/classes/operator_overload.cpp
+    # src/classes/inheritance.cpp
+    # src/classes/polymorphism.cpp
+    # src/classes/raii.cpp
+    # src/classes/friend_nested.cpp
+    # src/classes/union_and_volatile.cpp
+)
+target_include_directories(mywork_classes PUBLIC include)
+target_link_libraries(mywork_classes PUBLIC lesson_utils)
+
+add_executable(class_demo examples/classes/01_class_declaration_demo.cpp)
+target_link_libraries(class_demo PRIVATE mywork_classes)
+
 # 模板位置: 02_classes/
 # 学完第 2 章后取消注释
 

@@ -136,7 +136,4 @@ int main() {
         const int& tempb = 100;
     }
 
-    const int* a; /*修饰a指向的值*/
-    int const* a; /*同时上*/
-    int* const a = nullptr; /*修饰a本身*/
 }

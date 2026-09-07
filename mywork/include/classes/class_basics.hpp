@@ -19,10 +19,6 @@ public:
     double area() const {
         return 3.14159 * radius_ * radius_;
     }
-
-    double area() const {
-        return 3.14159 * radius_ * radius_;
-    }
 };
 
 class BankAccount {

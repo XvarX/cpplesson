@@ -59,6 +59,45 @@ private:  // ── 外部不可见 ──
     }
 };
 
+
+class Rectangle {
+public:
+    Rectangle(int height, int width):height_(height),width_(width){
+        count++;
+    }
+
+    int area() {
+        return height_*width_;
+    }
+
+    int perimeter() {
+        return (height_ + width_)*2;
+    }
+
+private:
+    int height_;
+    int width_;
+    inline static int count = 0;
+
+};
+
+class Person{
+public:
+    Person& set_name(std::string name) {
+        name_ = name;
+        return *this;
+    }
+
+    Person& set_age(int age) {
+        age_ = age;
+        return *this;
+    }
+
+private:
+    std::string name_;
+    int age_;
+};
+
 // ═══════════════════════════════════════════════════════════════════════════════
 // Counter — this 指针与链式调用
 // ═══════════════════════════════════════════════════════════════════════════════
