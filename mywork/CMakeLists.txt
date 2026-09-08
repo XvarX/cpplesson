@@ -90,7 +90,7 @@ target_link_libraries(control_demo PRIVATE mywork_fundamentals)
 
 add_library(mywork_classes STATIC
     src/classes/class_basics.cpp
-    # src/classes/ctor_dtor.cpp
+    src/classes/ctor_dtor.cpp
     # src/classes/copy_move.cpp
     # src/classes/operator_overload.cpp
     # src/classes/inheritance.cpp
@@ -99,11 +99,6 @@ add_library(mywork_classes STATIC
     # src/classes/friend_nested.cpp
     # src/classes/union_and_volatile.cpp
 )
-target_include_directories(mywork_classes PUBLIC include)
-target_link_libraries(mywork_classes PUBLIC lesson_utils)
-
-add_executable(class_demo examples/classes/01_class_declaration_demo.cpp)
-target_link_libraries(class_demo PRIVATE mywork_classes)
 
 # 模板位置: 02_classes/
 # 学完第 2 章后取消注释
@@ -119,13 +114,13 @@ target_link_libraries(class_demo PRIVATE mywork_classes)
 #     src/classes/friend_nested.cpp
 #     src/classes/union_and_volatile.cpp
 # )
-# target_include_directories(mywork_classes PUBLIC include)
-# target_link_libraries(mywork_classes PUBLIC lesson_utils)
+target_include_directories(mywork_classes PUBLIC include)
+target_link_libraries(mywork_classes PUBLIC lesson_utils)
 
-# add_executable(01_class_demo examples/classes/01_class_declaration_demo.cpp)
-# target_link_libraries(01_class_demo PRIVATE mywork_classes)
-# add_executable(02_ctor_demo examples/classes/02_ctor_dtor_demo.cpp)
-# target_link_libraries(02_ctor_demo PRIVATE mywork_classes)
+add_executable(class_demo examples/classes/01_class_declaration_demo.cpp)
+target_link_libraries(class_demo PRIVATE mywork_classes)
+add_executable(ctor_demo examples/classes/02_ctor_dtor_demo.cpp)
+target_link_libraries(ctor_demo PRIVATE mywork_classes)
 # add_executable(03_copy_move_demo examples/classes/03_copy_move_control_demo.cpp)
 # target_link_libraries(03_copy_move_demo PRIVATE mywork_classes)
 # add_executable(04_operator_demo examples/classes/04_operator_overload_demo.cpp)
